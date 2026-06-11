@@ -11,6 +11,7 @@ frontend will work against the real API by simply flipping `USE_MOCK = false` in
 - **Auth:** Bearer JWT in the `Authorization` header — `Authorization: Bearer <access_token>`
 - **Language:** All human-readable text fields are Persian (UTF-8). Dates/times are ISO 8601.
 
+
 ---
 
 ## Table of contents
