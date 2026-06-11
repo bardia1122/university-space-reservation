@@ -1,0 +1,61 @@
+<svg viewBox="0 0 1200 750" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="غرفه جشنواره">
+  <defs>
+    <linearGradient id="fb-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="fb-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fcd34d"/>
+      <stop offset="1" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#fb-sky)"/>
+  <circle cx="220" cy="180" r="80" fill="#fff7ed" opacity="0.7"/>
+  <!-- bunting flags -->
+  <g>
+    <polyline points="0,120 600,180 1200,120" stroke="#b45309" stroke-width="3" fill="none"/>
+    <g>
+      <polygon points="120,138 160,150 120,170" fill="#ef4444"/>
+      <polygon points="240,150 280,160 240,182" fill="#3b82f6"/>
+      <polygon points="360,160 400,170 360,192" fill="#22c55e"/>
+      <polygon points="480,170 520,178 480,200" fill="#a855f7"/>
+      <polygon points="700,178 740,170 700,200" fill="#ef4444"/>
+      <polygon points="820,170 860,160 820,192" fill="#3b82f6"/>
+      <polygon points="940,160 980,150 940,182" fill="#22c55e"/>
+      <polygon points="1060,150 1100,138 1060,170" fill="#a855f7"/>
+    </g>
+  </g>
+  <!-- ground -->
+  <rect x="0" y="500" width="1200" height="250" fill="url(#fb-ground)"/>
+  <!-- tent canopy (striped) -->
+  <g>
+    <path d="M420 300 L780 300 L820 360 L380 360 Z" fill="#dc2626"/>
+    <g fill="#f8fafc">
+      <polygon points="420,300 460,300 440,360 400,360"/>
+      <polygon points="500,300 540,300 530,360 490,360"/>
+      <polygon points="580,300 620,300 620,360 580,360"/>
+      <polygon points="660,300 700,300 710,360 670,360"/>
+      <polygon points="740,300 780,300 800,360 760,360"/>
+    </g>
+    <!-- scalloped edge -->
+    <g fill="#dc2626">
+      <path d="M380 360 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 q15 24 30 0 L820 360 Z"/>
+    </g>
+  </g>
+  <!-- booth body -->
+  <rect x="430" y="380" width="340" height="170" fill="#fef3c7"/>
+  <rect x="430" y="380" width="340" height="170" fill="none" stroke="#b45309" stroke-width="4"/>
+  <!-- counter -->
+  <rect x="430" y="500" width="340" height="50" fill="#d97706"/>
+  <!-- sign -->
+  <rect x="500" y="400" width="200" height="50" rx="6" fill="#1d4ed8"/>
+  <rect x="520" y="414" width="160" height="10" rx="5" fill="#dbeafe"/>
+  <rect x="540" y="430" width="120" height="8" rx="4" fill="#bfdbfe"/>
+  <!-- balloons -->
+  <g>
+    <circle cx="860" cy="430" r="34" fill="#ef4444"/><line x1="860" y1="464" x2="860" y2="540" stroke="#b45309" stroke-width="2"/>
+    <circle cx="910" cy="460" r="28" fill="#3b82f6"/><line x1="910" y1="488" x2="910" y2="545" stroke="#b45309" stroke-width="2"/>
+    <circle cx="320" cy="450" r="30" fill="#22c55e"/><line x1="320" y1="480" x2="320" y2="545" stroke="#b45309" stroke-width="2"/>
+  </g>
+</svg>
