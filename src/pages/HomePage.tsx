@@ -297,7 +297,7 @@ export function HomePage() {
       >
         {infoSpace && (
           <div className="space-y-5">
-            <div className="relative h-52 rounded-xl overflow-hidden bg-gray-100">
+            <div className="relative h-52 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800">
               <img
                 src={spaceImage(infoSpace)}
                 alt={infoSpace.name}
@@ -309,46 +309,46 @@ export function HomePage() {
             </div>
 
             <div className="flex items-center justify-between flex-wrap gap-3">
-              <span className="inline-flex items-center gap-1.5 text-sm text-gray-600">
+              <span className="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-slate-300">
                 {(() => {
                   const Icon = spaceTypeIcons[infoSpace.space_type];
-                  return <Icon size={16} className="text-primary-600" />;
+                  return <Icon size={16} className="text-primary-600 dark:text-primary-400" />;
                 })()}
                 {spaceTypeLabels[infoSpace.space_type]}
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Star size={16} className="fill-amber-400 text-amber-400" />
-                <span className="font-bold text-gray-900">{infoSpace.avg_rating.toFixed(1)}</span>
-                <span className="text-sm text-gray-400">({infoSpace.total_ratings} امتیاز)</span>
+                <span className="font-bold text-gray-900 dark:text-slate-100">{infoSpace.avg_rating.toFixed(1)}</span>
+                <span className="text-sm text-gray-400 dark:text-slate-500">({infoSpace.total_ratings} امتیاز)</span>
               </span>
             </div>
 
             {infoSpace.description && (
-              <p className="text-sm text-gray-600 leading-relaxed">{infoSpace.description}</p>
+              <p className="text-sm text-gray-600 leading-relaxed dark:text-slate-300">{infoSpace.description}</p>
             )}
 
             <div className="grid grid-cols-2 gap-3">
               {infoSpace.location && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <MapPin size={15} className="text-gray-400" />
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+                  <MapPin size={15} className="text-gray-400 dark:text-slate-500" />
                   <span>{infoSpace.location}</span>
                 </div>
               )}
               {infoSpace.building && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Building2 size={15} className="text-gray-400" />
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+                  <Building2 size={15} className="text-gray-400 dark:text-slate-500" />
                   <span>{infoSpace.building}</span>
                 </div>
               )}
               {infoSpace.capacity && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Users size={15} className="text-gray-400" />
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+                  <Users size={15} className="text-gray-400 dark:text-slate-500" />
                   <span>ظرفیت {infoSpace.capacity} نفر</span>
                 </div>
               )}
               {infoSpace.floor && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Layers size={15} className="text-gray-400" />
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+                  <Layers size={15} className="text-gray-400 dark:text-slate-500" />
                   <span>{infoSpace.floor}</span>
                 </div>
               )}
@@ -356,12 +356,12 @@ export function HomePage() {
 
             {infoSpace.amenities && infoSpace.amenities.length > 0 && (
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">امکانات:</p>
+                <p className="text-sm font-medium text-gray-700 mb-2 dark:text-slate-200">امکانات:</p>
                 <div className="flex flex-wrap gap-2">
                   {infoSpace.amenities.map((a) => (
                     <span
                       key={a}
-                      className="text-xs bg-primary-50 text-primary-700 px-2.5 py-1 rounded-full border border-primary-100"
+                      className="text-xs bg-primary-50 text-primary-700 px-2.5 py-1 rounded-full border border-primary-100 dark:bg-primary-500/15 dark:text-primary-300 dark:border-primary-500/25"
                     >
                       {a}
                     </span>
@@ -371,9 +371,9 @@ export function HomePage() {
             )}
 
             {infoSpace.rules && (
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl">
-                <p className="text-xs font-semibold text-amber-700 mb-1">قوانین استفاده:</p>
-                <p className="text-xs text-amber-700 leading-relaxed">{infoSpace.rules}</p>
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl dark:bg-amber-500/10 dark:border-amber-500/25">
+                <p className="text-xs font-semibold text-amber-700 mb-1 dark:text-amber-300">قوانین استفاده:</p>
+                <p className="text-xs text-amber-700 leading-relaxed dark:text-amber-200/90">{infoSpace.rules}</p>
               </div>
             )}
 
