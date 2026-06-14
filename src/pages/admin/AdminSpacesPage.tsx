@@ -133,7 +133,7 @@ export function AdminSpacesPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-gray-50 border-b border-gray-100 text-gray-500 text-xs">
+                <tr className="bg-gray-50 dark:bg-slate-800 border-b border-gray-100 dark:border-slate-800 text-gray-500 dark:text-slate-400 text-xs">
                   <th className="px-4 py-3 font-semibold text-right">نام فضا</th>
                   <th className="px-4 py-3 font-semibold text-right hidden md:table-cell">نوع</th>
                   <th className="px-4 py-3 font-semibold text-right hidden lg:table-cell">مکان</th>
@@ -143,26 +143,26 @@ export function AdminSpacesPage() {
                   <th className="px-4 py-3 font-semibold text-right">اقدام</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {spaces.map((space) => (
-                  <tr key={space.id} className="hover:bg-gray-50 transition-colors">
+                  <tr key={space.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
                     <td className="px-4 py-3">
-                      <p className="font-medium text-gray-900">{space.name}</p>
-                      {space.name_en && <p className="text-xs text-gray-400">{space.name_en}</p>}
+                      <p className="font-medium text-gray-900 dark:text-slate-100">{space.name}</p>
+                      {space.name_en && <p className="text-xs text-gray-400 dark:text-slate-500">{space.name_en}</p>}
                     </td>
-                    <td className="px-4 py-3 text-gray-600 hidden md:table-cell">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">
                       {spaceTypeLabels[space.space_type] ?? space.space_type}
                     </td>
-                    <td className="px-4 py-3 text-gray-600 hidden lg:table-cell max-w-[150px] truncate">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden lg:table-cell max-w-[150px] truncate">
                       {space.location ?? '—'}
                     </td>
-                    <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden sm:table-cell">
                       {space.capacity ? `${space.capacity} نفر` : '—'}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1">
                         <StarRating value={Math.round(space.avg_rating)} readonly size="sm" />
-                        <span className="text-xs text-gray-400">({space.total_ratings})</span>
+                        <span className="text-xs text-gray-400 dark:text-slate-500">({space.total_ratings})</span>
                       </div>
                     </td>
                     <td className="px-4 py-3">
@@ -172,7 +172,7 @@ export function AdminSpacesPage() {
                       <div className="flex gap-1.5">
                         <button
                           onClick={() => openEdit(space)}
-                          className="p-1.5 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors"
+                          className="p-1.5 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 transition-colors"
                         >
                           <Edit size={15} />
                         </button>
@@ -280,7 +280,7 @@ export function AdminSpacesPage() {
       {/* Delete Confirm */}
       <Modal open={deleteId !== null} onClose={() => setDeleteId(null)} title="حذف فضا" size="sm">
         <div className="space-y-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-slate-300">
             آیا مطمئن هستید که می‌خواهید این فضا را حذف کنید؟ این عمل برگشت‌پذیر نیست.
           </p>
           <div className="flex gap-3">

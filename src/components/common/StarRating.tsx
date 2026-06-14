@@ -35,7 +35,7 @@ export function StarRating({
           <Star
             size={px}
             className={clsx(
-              star <= value ? 'fill-amber-400 text-amber-400' : 'text-gray-300',
+              star <= value ? 'fill-amber-400 text-amber-400' : 'text-gray-300 dark:text-slate-600',
             )}
           />
         </button>

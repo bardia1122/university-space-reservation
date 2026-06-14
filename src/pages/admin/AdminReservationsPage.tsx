@@ -62,7 +62,7 @@ export function AdminReservationsPage() {
       {/* Filter */}
       <div className="card p-4">
         <div className="flex items-center gap-2 flex-wrap">
-          <Filter size={16} className="text-gray-400" />
+          <Filter size={16} className="text-gray-400 dark:text-slate-500" />
           {statusFilters.map((f) => (
             <button
               key={f.value}
@@ -70,7 +70,7 @@ export function AdminReservationsPage() {
               className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                 statusFilter === f.value
                   ? 'bg-primary-600 text-white border-primary-600'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300'
+                  : 'bg-white dark:bg-slate-900 text-gray-600 dark:text-slate-300 border-gray-200 dark:border-slate-800 hover:border-primary-300'
               }`}
             >
               {f.label}
@@ -93,7 +93,7 @@ export function AdminReservationsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-gray-50 border-b border-gray-100 text-gray-500 text-xs">
+                <tr className="bg-gray-50 dark:bg-slate-800 border-b border-gray-100 dark:border-slate-800 text-gray-500 dark:text-slate-400 text-xs">
                   <th className="px-4 py-3 font-semibold text-right">فعالیت</th>
                   <th className="px-4 py-3 font-semibold text-right hidden lg:table-cell">فضا</th>
                   <th className="px-4 py-3 font-semibold text-right hidden md:table-cell">کاربر</th>
@@ -103,33 +103,33 @@ export function AdminReservationsPage() {
                   <th className="px-4 py-3 font-semibold text-right">اقدام</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {reservations.map((r) => (
-                  <tr key={r.id} className="hover:bg-gray-50 transition-colors">
+                  <tr key={r.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
                     <td className="px-4 py-3">
                       <div className="max-w-[160px]">
-                        <p className="font-medium text-gray-900 truncate">{r.activity_title}</p>
+                        <p className="font-medium text-gray-900 dark:text-slate-100 truncate">{r.activity_title}</p>
                         {r.organization_name && (
-                          <p className="text-xs text-gray-400 truncate mt-0.5">{r.organization_name}</p>
+                          <p className="text-xs text-gray-400 dark:text-slate-500 truncate mt-0.5">{r.organization_name}</p>
                         )}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-gray-600 hidden lg:table-cell">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden lg:table-cell">
                       {r.space?.name ?? `#${r.space_id}`}
                     </td>
-                    <td className="px-4 py-3 text-gray-600 hidden md:table-cell">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">
                       <p>{r.user?.full_name ?? '—'}</p>
                       {r.user?.department && (
-                        <p className="text-xs text-gray-400">{r.user.department}</p>
+                        <p className="text-xs text-gray-400 dark:text-slate-500">{r.user.department}</p>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-gray-600 whitespace-nowrap">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 whitespace-nowrap">
                       <p>{r.reservation_date}</p>
-                      <p className="text-xs text-gray-400">
+                      <p className="text-xs text-gray-400 dark:text-slate-500">
                         {r.start_time.slice(0, 5)} - {r.end_time.slice(0, 5)}
                       </p>
                     </td>
-                    <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">
+                    <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden sm:table-cell">
                       {activityLabels[r.activity_type] ?? r.activity_type}
                     </td>
                     <td className="px-4 py-3">
@@ -140,7 +140,7 @@ export function AdminReservationsPage() {
                         <div className="flex gap-1.5">
                           <button
                             onClick={() => openReview(r.id, 'approved')}
-                            className="p-1.5 rounded-lg text-green-600 hover:bg-green-50 transition-colors"
+                            className="p-1.5 rounded-lg text-green-600 dark:text-green-400 hover:bg-green-50 transition-colors"
                             title="تأیید"
                           >
                             <CheckCircle size={16} />
@@ -171,7 +171,7 @@ export function AdminReservationsPage() {
         size="sm"
       >
         <div className="space-y-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-slate-300">
             {reviewAction === 'approved'
               ? 'آیا می‌خواهید این رزرو را تأیید کنید؟'
               : 'لطفاً دلیل رد رزرو را وارد کنید.'}

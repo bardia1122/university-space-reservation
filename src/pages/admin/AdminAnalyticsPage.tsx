@@ -66,25 +66,25 @@ export function AdminAnalyticsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-100 text-gray-500 text-xs">
+                <tr className="border-b border-gray-100 dark:border-slate-800 text-gray-500 dark:text-slate-400 text-xs">
                   <th className="pb-2 text-right font-semibold">فضا</th>
                   <th className="pb-2 text-right font-semibold">رزرو</th>
                   <th className="pb-2 text-right font-semibold">تأیید</th>
                   <th className="pb-2 text-right font-semibold">امتیاز</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {spaceUsage.map((s) => (
-                  <tr key={s.space_id} className="hover:bg-gray-50">
-                    <td className="py-2.5 font-medium text-gray-900 truncate max-w-[120px]">
+                  <tr key={s.space_id} className="hover:bg-gray-50 dark:hover:bg-slate-800">
+                    <td className="py-2.5 font-medium text-gray-900 dark:text-slate-100 truncate max-w-[120px]">
                       {s.space_name}
                     </td>
-                    <td className="py-2.5 text-gray-600">{s.total_reservations}</td>
-                    <td className="py-2.5 text-green-600">{s.approved_count}</td>
+                    <td className="py-2.5 text-gray-600 dark:text-slate-300">{s.total_reservations}</td>
+                    <td className="py-2.5 text-green-600 dark:text-green-400">{s.approved_count}</td>
                     <td className="py-2.5">
                       <div className="flex items-center gap-1">
                         <StarRating value={Math.round(s.avg_rating)} readonly size="sm" />
-                        <span className="text-xs text-gray-400">{s.avg_rating.toFixed(1)}</span>
+                        <span className="text-xs text-gray-400 dark:text-slate-500">{s.avg_rating.toFixed(1)}</span>
                       </div>
                     </td>
                   </tr>

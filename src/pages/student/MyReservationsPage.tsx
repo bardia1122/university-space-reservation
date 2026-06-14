@@ -45,8 +45,8 @@ export function MyReservationsPage() {
       {/* Filter bar */}
       <div className="card p-4">
         <div className="flex items-center gap-2 flex-wrap">
-          <Filter size={16} className="text-gray-400" />
-          <span className="text-sm text-gray-600 font-medium">فیلتر:</span>
+          <Filter size={16} className="text-gray-400 dark:text-slate-500" />
+          <span className="text-sm text-gray-600 dark:text-slate-300 font-medium">فیلتر:</span>
           {statusFilters.map((f) => (
             <button
               key={f.value}
@@ -54,7 +54,7 @@ export function MyReservationsPage() {
               className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                 statusFilter === f.value
                   ? 'bg-primary-600 text-white border-primary-600'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300'
+                  : 'bg-white dark:bg-slate-900 text-gray-600 dark:text-slate-300 border-gray-200 dark:border-slate-800 hover:border-primary-300'
               }`}
             >
               {f.label}
@@ -73,7 +73,7 @@ export function MyReservationsPage() {
         />
       ) : (
         <div className="space-y-4">
-          <p className="text-sm text-gray-500 px-1">{reservations.length} رزرو</p>
+          <p className="text-sm text-gray-500 dark:text-slate-400 px-1">{reservations.length} رزرو</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {reservations.map((r) => (
               <ReservationCard
@@ -94,7 +94,7 @@ export function MyReservationsPage() {
         size="sm"
       >
         <div className="space-y-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-slate-300">
             آیا از لغو این رزرو مطمئن هستید؟ این عمل قابل بازگشت نیست.
           </p>
           <div className="flex gap-3">

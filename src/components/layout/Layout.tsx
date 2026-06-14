@@ -25,7 +25,7 @@ export function Layout({ children }: { children: ReactNode }) {
     (pathname.startsWith('/spaces/') ? 'جزئیات فضا' : 'سامانه رزرو فضا');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
       <Sidebar
         mobileOpen={mobileOpen}
         onClose={() => setMobileOpen(false)}

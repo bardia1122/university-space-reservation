@@ -14,7 +14,7 @@ export function AdminUsersPage() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-gray-50 border-b border-gray-100 text-gray-500 text-xs">
+            <tr className="bg-gray-50 dark:bg-slate-800 border-b border-gray-100 dark:border-slate-800 text-gray-500 dark:text-slate-400 text-xs">
               <th className="px-4 py-3 font-semibold text-right">نام</th>
               <th className="px-4 py-3 font-semibold text-right hidden md:table-cell">ایمیل</th>
               <th className="px-4 py-3 font-semibold text-right hidden sm:table-cell">دانشکده</th>
@@ -23,24 +23,24 @@ export function AdminUsersPage() {
               <th className="px-4 py-3 font-semibold text-right">وضعیت</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-50">
+          <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
             {mockUsers.map((user) => {
               const role = roleLabels[user.role];
               return (
-                <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={user.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
-                        <span className="text-primary-700 text-xs font-semibold">
+                      <div className="w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-500/15 flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary-700 dark:text-primary-300 text-xs font-semibold">
                           {user.full_name[0]}
                         </span>
                       </div>
-                      <span className="font-medium text-gray-900">{user.full_name}</span>
+                      <span className="font-medium text-gray-900 dark:text-slate-100">{user.full_name}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-gray-600 hidden md:table-cell">{user.email}</td>
-                  <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">{user.department ?? '—'}</td>
-                  <td className="px-4 py-3 text-gray-600 hidden lg:table-cell">{user.student_id ?? '—'}</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">{user.email}</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden sm:table-cell">{user.department ?? '—'}</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden lg:table-cell">{user.student_id ?? '—'}</td>
                   <td className="px-4 py-3">
                     <Badge variant={role?.variant ?? 'gray'} label={role?.label ?? user.role} />
                   </td>

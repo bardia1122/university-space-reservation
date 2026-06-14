@@ -32,7 +32,7 @@ export function Modal({ open, onClose, title, children, size = 'md' }: ModalProp
       />
       <div
         className={clsx(
-          'relative bg-white rounded-2xl shadow-xl w-full flex flex-col max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-3rem)] animate-slide-in',
+          'relative bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full flex flex-col max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-3rem)] animate-slide-in',
           {
             'max-w-sm': size === 'sm',
             'max-w-lg': size === 'md',
@@ -40,11 +40,11 @@ export function Modal({ open, onClose, title, children, size = 'md' }: ModalProp
           },
         )}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
-          <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0 dark:border-slate-800">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-slate-100">{title}</h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors dark:hover:text-slate-200 dark:hover:bg-slate-800"
           >
             <X size={18} />
           </button>

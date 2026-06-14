@@ -72,8 +72,8 @@ export function Logo({
       <div className="flex flex-col items-center gap-3">
         <LogoMark size={size} />
         <div className="text-center leading-tight">
-          <p className="font-bold text-gray-900">سامانه فضاهای دانشگاه</p>
-          <p className="text-xs text-gray-400 mt-0.5">رزرو و مدیریت یکپارچه</p>
+          <p className="font-bold text-gray-900 dark:text-slate-100">سامانه فضاهای دانشگاه</p>
+          <p className="text-xs text-gray-400 mt-0.5 dark:text-slate-500">رزرو و مدیریت یکپارچه</p>
         </div>
       </div>
     );
@@ -82,8 +82,8 @@ export function Logo({
       <div className="flex items-center gap-3">
         <LogoMark size={size} />
         <div className="leading-tight">
-          <p className="font-bold text-gray-900 text-sm">سامانه فضاهای دانشگاه</p>
-          <p className="text-[10px] text-gray-400">رزرو و مدیریت یکپارچه</p>
+          <p className="font-bold text-gray-900 text-sm dark:text-slate-100">سامانه فضاهای دانشگاه</p>
+          <p className="text-[10px] text-gray-400 dark:text-slate-500">رزرو و مدیریت یکپارچه</p>
         </div>
       </div>
     );

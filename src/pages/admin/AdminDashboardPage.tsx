@@ -33,13 +33,13 @@ export function AdminDashboardPage() {
   if (statsLoading) return <LoadingSpinner fullPage />;
 
   const statCards = [
-    { label: 'کل رزروها', value: stats?.total_reservations ?? 0, icon: CalendarDays, color: 'text-blue-600', bg: 'bg-blue-50' },
-    { label: 'رزروهای معلق', value: stats?.pending_reservations ?? 0, icon: Clock, color: 'text-amber-600', bg: 'bg-amber-50' },
-    { label: 'تأیید شده', value: stats?.approved_reservations ?? 0, icon: CheckCircle, color: 'text-green-600', bg: 'bg-green-50' },
-    { label: 'کاربران', value: stats?.total_users ?? 0, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50' },
-    { label: 'فضاها', value: stats?.total_spaces ?? 0, icon: Building2, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-    { label: 'شکایات باز', value: stats?.open_complaints ?? 0, icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50' },
-    { label: 'میانگین امتیاز', value: stats?.avg_rating.toFixed(1) ?? '—', icon: Star, color: 'text-amber-600', bg: 'bg-amber-50' },
+    { label: 'کل رزروها', value: stats?.total_reservations ?? 0, icon: CalendarDays, color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-500/10' },
+    { label: 'رزروهای معلق', value: stats?.pending_reservations ?? 0, icon: Clock, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-500/10' },
+    { label: 'تأیید شده', value: stats?.approved_reservations ?? 0, icon: CheckCircle, color: 'text-green-600 dark:text-green-400', bg: 'bg-green-50 dark:bg-green-500/10' },
+    { label: 'کاربران', value: stats?.total_users ?? 0, icon: Users, color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-500/10' },
+    { label: 'فضاها', value: stats?.total_spaces ?? 0, icon: Building2, color: 'text-indigo-600', bg: 'bg-indigo-50 dark:bg-indigo-500/10' },
+    { label: 'شکایات باز', value: stats?.open_complaints ?? 0, icon: AlertCircle, color: 'text-red-600 dark:text-red-400', bg: 'bg-red-50 dark:bg-red-500/10' },
+    { label: 'میانگین امتیاز', value: stats?.avg_rating.toFixed(1) ?? '—', icon: Star, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-500/10' },
     { label: 'بازخوردها', value: '—', icon: TrendingUp, color: 'text-teal-600', bg: 'bg-teal-50' },
   ];
 
@@ -65,8 +65,8 @@ export function AdminDashboardPage() {
             <div className={`w-10 h-10 rounded-xl ${card.bg} flex items-center justify-center mb-3`}>
               <card.icon size={20} className={card.color} />
             </div>
-            <p className="text-2xl font-bold text-gray-900">{card.value}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{card.label}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-slate-100">{card.value}</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">{card.label}</p>
           </div>
         ))}
       </div>
@@ -98,7 +98,7 @@ export function AdminDashboardPage() {
               </BarChart>
             </ResponsiveContainer>
           ) : (
-            <div className="flex items-center justify-center h-40 text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-40 text-gray-400 dark:text-slate-500 text-sm">
               داده‌ای موجود نیست
             </div>
           )}
@@ -128,7 +128,7 @@ export function AdminDashboardPage() {
               </PieChart>
             </ResponsiveContainer>
           ) : (
-            <div className="flex items-center justify-center h-40 text-gray-400 text-sm">
+            <div className="flex items-center justify-center h-40 text-gray-400 dark:text-slate-500 text-sm">
               داده‌ای موجود نیست
             </div>
           )}
@@ -137,19 +137,19 @@ export function AdminDashboardPage() {
 
       {/* Pending Reservations */}
       <div className="card">
-        <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+        <div className="px-5 py-4 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
           <h3 className="section-title">رزروهای معلق نیازمند بررسی</h3>
-          <span className="badge bg-amber-100 text-amber-800">{pendingReservations.length} مورد</span>
+          <span className="badge bg-amber-100 dark:bg-amber-500/15 text-amber-800 dark:text-amber-300">{pendingReservations.length} مورد</span>
         </div>
         {pendingReservations.length === 0 ? (
-          <div className="py-8 text-center text-gray-400 text-sm">
+          <div className="py-8 text-center text-gray-400 dark:text-slate-500 text-sm">
             هیچ رزرو معلقی وجود ندارد
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-100 text-gray-500 text-xs">
+                <tr className="border-b border-gray-100 dark:border-slate-800 text-gray-500 dark:text-slate-400 text-xs">
                   <th className="px-5 py-3 font-medium text-right">فعالیت</th>
                   <th className="px-5 py-3 font-medium text-right hidden md:table-cell">فضا</th>
                   <th className="px-5 py-3 font-medium text-right hidden sm:table-cell">کاربر</th>
@@ -157,19 +157,19 @@ export function AdminDashboardPage() {
                   <th className="px-5 py-3 font-medium text-right">وضعیت</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {pendingReservations.slice(0, 5).map((r) => (
-                  <tr key={r.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-5 py-3 font-medium text-gray-900 max-w-xs truncate">
+                  <tr key={r.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                    <td className="px-5 py-3 font-medium text-gray-900 dark:text-slate-100 max-w-xs truncate">
                       {r.activity_title}
                     </td>
-                    <td className="px-5 py-3 text-gray-600 hidden md:table-cell">
+                    <td className="px-5 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">
                       {r.space?.name ?? `فضا ${r.space_id}`}
                     </td>
-                    <td className="px-5 py-3 text-gray-600 hidden sm:table-cell">
+                    <td className="px-5 py-3 text-gray-600 dark:text-slate-300 hidden sm:table-cell">
                       {r.user?.full_name ?? '—'}
                     </td>
-                    <td className="px-5 py-3 text-gray-600 whitespace-nowrap">
+                    <td className="px-5 py-3 text-gray-600 dark:text-slate-300 whitespace-nowrap">
                       {r.reservation_date}
                     </td>
                     <td className="px-5 py-3">

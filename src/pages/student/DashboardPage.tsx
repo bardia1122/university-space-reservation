@@ -22,29 +22,29 @@ export function DashboardPage() {
       label: 'کل رزروها',
       value: reservations.length,
       icon: Calendar,
-      color: 'text-blue-600',
-      bg: 'bg-blue-50',
+      color: 'text-blue-600 dark:text-blue-400',
+      bg: 'bg-blue-50 dark:bg-blue-500/10',
     },
     {
       label: 'در انتظار بررسی',
       value: reservations.filter((r) => r.status === 'pending').length,
       icon: Clock,
-      color: 'text-amber-600',
-      bg: 'bg-amber-50',
+      color: 'text-amber-600 dark:text-amber-400',
+      bg: 'bg-amber-50 dark:bg-amber-500/10',
     },
     {
       label: 'تأیید شده',
       value: reservations.filter((r) => r.status === 'approved').length,
       icon: CheckCircle,
-      color: 'text-green-600',
-      bg: 'bg-green-50',
+      color: 'text-green-600 dark:text-green-400',
+      bg: 'bg-green-50 dark:bg-green-500/10',
     },
     {
       label: 'رد شده',
       value: reservations.filter((r) => r.status === 'rejected').length,
       icon: XCircle,
-      color: 'text-red-600',
-      bg: 'bg-red-50',
+      color: 'text-red-600 dark:text-red-400',
+      bg: 'bg-red-50 dark:bg-red-500/10',
     },
   ];
 
@@ -77,19 +77,19 @@ export function DashboardPage() {
             <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center mb-3`}>
               <stat.icon size={20} className={stat.color} />
             </div>
-            <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-            <p className="text-sm text-gray-500">{stat.label}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-slate-100">{stat.value}</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">{stat.label}</p>
           </div>
         ))}
       </div>
 
       {/* Recent Reservations */}
       <div className="card">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-slate-800">
           <h3 className="section-title">آخرین رزروها</h3>
           <button
             onClick={() => navigate('/my-reservations')}
-            className="text-sm text-primary-600 hover:underline flex items-center gap-1"
+            className="text-sm text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1"
           >
             مشاهده همه <ArrowLeft size={14} />
           </button>
@@ -105,15 +105,15 @@ export function DashboardPage() {
             action={{ label: 'مشاهده فضاها', onClick: () => navigate('/spaces') }}
           />
         ) : (
-          <div className="divide-y divide-gray-50">
+          <div className="divide-y divide-gray-50 dark:divide-slate-800">
             {recent.map((r) => (
               <div
                 key={r.id}
-                className="flex items-center justify-between px-5 py-3.5 hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-between px-5 py-3.5 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">{r.activity_title}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">
+                  <p className="text-sm font-medium text-gray-900 dark:text-slate-100 truncate">{r.activity_title}</p>
+                  <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
                     {r.space?.name} — {r.reservation_date}
                   </p>
                 </div>
@@ -132,24 +132,24 @@ export function DashboardPage() {
             desc: 'گزارش مشکلات فضاها',
             icon: Megaphone,
             to: '/spaces',
-            color: 'bg-red-50 hover:bg-red-100',
-            iconColor: 'text-red-600',
+            color: 'bg-red-50 dark:bg-red-500/10 hover:bg-red-100',
+            iconColor: 'text-red-600 dark:text-red-400',
           },
           {
             label: 'پیشنهادات',
             desc: 'ایده‌های بهبود رویدادها',
             icon: Lightbulb,
             to: '/suggestions',
-            color: 'bg-amber-50 hover:bg-amber-100',
-            iconColor: 'text-amber-600',
+            color: 'bg-amber-50 dark:bg-amber-500/10 hover:bg-amber-100',
+            iconColor: 'text-amber-600 dark:text-amber-400',
           },
           {
             label: 'جزئیات فضاها',
             desc: 'مشاهده تمام فضاها',
             icon: Building2,
             to: '/spaces',
-            color: 'bg-blue-50 hover:bg-blue-100',
-            iconColor: 'text-blue-600',
+            color: 'bg-blue-50 dark:bg-blue-500/10 hover:bg-blue-100',
+            iconColor: 'text-blue-600 dark:text-blue-400',
           },
         ].map((item) => (
           <button
@@ -158,8 +158,8 @@ export function DashboardPage() {
             className={`card p-4 text-right transition-colors ${item.color}`}
           >
             <item.icon size={24} className={`${item.iconColor} mb-2`} />
-            <p className="font-medium text-gray-900 text-sm">{item.label}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
+            <p className="font-medium text-gray-900 dark:text-slate-100 text-sm">{item.label}</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">{item.desc}</p>
           </button>
         ))}
       </div>

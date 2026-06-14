@@ -74,20 +74,20 @@ export function SuggestionsPage() {
       {topSuggestions.length > 0 && (
         <div className="card p-5">
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp size={18} className="text-primary-600" />
+            <TrendingUp size={18} className="text-primary-600 dark:text-primary-400" />
             <h3 className="section-title">پرطرفدارترین پیشنهادات</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {topSuggestions.map((s, i) => (
-              <div key={s.id} className="p-4 bg-gradient-to-br from-primary-50 to-blue-50 rounded-xl border border-primary-100">
+              <div key={s.id} className="p-4 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-500/10 dark:to-blue-500/10 rounded-xl border border-primary-100 dark:border-primary-500/30">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-2xl font-black text-primary-200">#{i + 1}</span>
-                  <div className="flex items-center gap-1 text-sm font-bold text-primary-700">
+                  <div className="flex items-center gap-1 text-sm font-bold text-primary-700 dark:text-primary-300">
                     <ThumbsUp size={14} />
                     {s.upvotes}
                   </div>
                 </div>
-                <p className="text-sm font-medium text-gray-800 line-clamp-2">{s.title}</p>
+                <p className="text-sm font-medium text-gray-800 dark:text-slate-100 line-clamp-2">{s.title}</p>
               </div>
             ))}
           </div>
@@ -117,8 +117,8 @@ export function SuggestionsPage() {
                     disabled={hasUpvoted}
                     className={`flex flex-col items-center gap-0.5 flex-shrink-0 p-2.5 rounded-xl border transition-all ${
                       hasUpvoted
-                        ? 'bg-primary-50 border-primary-200 text-primary-700'
-                        : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50'
+                        ? 'bg-primary-50 dark:bg-primary-500/10 border-primary-200 dark:border-primary-500/30 text-primary-700 dark:text-primary-300'
+                        : 'bg-gray-50 dark:bg-slate-800 border-gray-200 dark:border-slate-800 text-gray-500 dark:text-slate-400 hover:border-primary-300 hover:text-primary-600 hover:bg-primary-50'
                     }`}
                   >
                     <ThumbsUp size={16} />
@@ -128,10 +128,10 @@ export function SuggestionsPage() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3 flex-wrap mb-2">
-                      <h3 className="font-semibold text-gray-900">{s.title}</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-slate-100">{s.title}</h3>
                       <div className="flex items-center gap-2 flex-wrap">
                         {s.category && (
-                          <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                          <span className="text-xs bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-slate-300 px-2 py-0.5 rounded-full">
                             {categoryLabels[s.category] ?? s.category}
                           </span>
                         )}
@@ -139,29 +139,29 @@ export function SuggestionsPage() {
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-600 mb-3 leading-relaxed">{s.description}</p>
+                    <p className="text-sm text-gray-600 dark:text-slate-300 mb-3 leading-relaxed">{s.description}</p>
 
                     {s.ai_summary && (
-                      <div className="flex items-start gap-2 p-2.5 bg-purple-50 rounded-lg border border-purple-100 mb-3">
+                      <div className="flex items-start gap-2 p-2.5 bg-purple-50 dark:bg-purple-500/10 rounded-lg border border-purple-100 mb-3">
                         <Sparkles size={14} className="text-purple-500 flex-shrink-0 mt-0.5" />
-                        <p className="text-xs text-purple-700">{s.ai_summary}</p>
+                        <p className="text-xs text-purple-700 dark:text-purple-300">{s.ai_summary}</p>
                       </div>
                     )}
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {s.user && (
-                          <span className="text-xs text-gray-400">{s.user.full_name}</span>
+                          <span className="text-xs text-gray-400 dark:text-slate-500">{s.user.full_name}</span>
                         )}
-                        <span className="text-xs text-gray-300">•</span>
-                        <span className="text-xs text-gray-400">{s.created_at.slice(0, 10)}</span>
+                        <span className="text-xs text-gray-300 dark:text-slate-600">•</span>
+                        <span className="text-xs text-gray-400 dark:text-slate-500">{s.created_at.slice(0, 10)}</span>
                       </div>
                       {s.ai_priority_score !== undefined && (
                         <div className="flex items-center gap-1">
-                          <span className="text-xs text-gray-400">اولویت هوش مصنوعی:</span>
+                          <span className="text-xs text-gray-400 dark:text-slate-500">اولویت هوش مصنوعی:</span>
                           <span className={`text-xs font-bold ${
-                            s.ai_priority_score > 0.8 ? 'text-green-600' :
-                            s.ai_priority_score > 0.6 ? 'text-amber-600' : 'text-gray-500'
+                            s.ai_priority_score > 0.8 ? 'text-green-600 dark:text-green-400' :
+                            s.ai_priority_score > 0.6 ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-slate-400'
                           }`}>
                             {Math.round(s.ai_priority_score * 100)}%
                           </span>

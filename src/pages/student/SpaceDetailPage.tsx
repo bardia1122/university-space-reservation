@@ -124,21 +124,21 @@ export function SpaceDetailPage() {
   });
 
   if (isLoading) return <LoadingSpinner fullPage />;
-  if (!space) return <div className="text-center py-20 text-gray-400">فضا یافت نشد</div>;
+  if (!space) return <div className="text-center py-20 text-gray-400 dark:text-slate-500">فضا یافت نشد</div>;
 
   return (
     <div className="max-w-4xl space-y-5">
       {/* Breadcrumb */}
       <button
         onClick={() => navigate('/spaces')}
-        className="flex items-center gap-2 text-sm text-gray-500 hover:text-primary-600 transition-colors"
+        className="flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400 hover:text-primary-600 transition-colors"
       >
         <ChevronRight size={16} />
         بازگشت به فضاها
       </button>
 
       {successMsg && (
-        <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-xl text-sm text-green-700">
+        <div className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/30 rounded-xl text-sm text-green-700 dark:text-green-300">
           <CheckCircle size={16} />
           {successMsg}
         </div>
@@ -149,46 +149,46 @@ export function SpaceDetailPage() {
         <div className="flex items-start justify-between flex-wrap gap-4 mb-4">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-2xl font-bold text-gray-900">{space.name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100">{space.name}</h1>
               <Badge variant={space.status} />
             </div>
-            {space.name_en && <p className="text-gray-400 text-sm">{space.name_en}</p>}
+            {space.name_en && <p className="text-gray-400 dark:text-slate-500 text-sm">{space.name_en}</p>}
           </div>
           <div className="flex items-center gap-1.5">
             <Star size={18} className="fill-amber-400 text-amber-400" />
-            <span className="text-lg font-bold text-gray-900">{space.avg_rating.toFixed(1)}</span>
-            <span className="text-sm text-gray-400">({space.total_ratings} امتیاز)</span>
+            <span className="text-lg font-bold text-gray-900 dark:text-slate-100">{space.avg_rating.toFixed(1)}</span>
+            <span className="text-sm text-gray-400 dark:text-slate-500">({space.total_ratings} امتیاز)</span>
           </div>
         </div>
 
         {space.description && (
-          <p className="text-gray-600 text-sm leading-relaxed mb-4">{space.description}</p>
+          <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4">{space.description}</p>
         )}
 
         {/* Meta grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {space.location && (
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <MapPin size={15} className="text-gray-400" />
+            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+              <MapPin size={15} className="text-gray-400 dark:text-slate-500" />
               <span>{space.location}</span>
             </div>
           )}
           {space.capacity && (
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Users size={15} className="text-gray-400" />
+            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+              <Users size={15} className="text-gray-400 dark:text-slate-500" />
               <span>ظرفیت {space.capacity} نفر</span>
             </div>
           )}
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Clock size={15} className="text-gray-400" />
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+            <Clock size={15} className="text-gray-400 dark:text-slate-500" />
             <span>حداقل {space.min_advance_hours} ساعت قبل</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Calendar size={15} className="text-gray-400" />
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+            <Calendar size={15} className="text-gray-400 dark:text-slate-500" />
             <span>حداکثر {space.advance_booking_days} روز آینده</span>
           </div>
           {space.requires_admin_approval && (
-            <div className="flex items-center gap-2 text-sm text-amber-600">
+            <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400">
               <Shield size={15} />
               <span>نیاز به تأیید مدیر</span>
             </div>
@@ -198,12 +198,12 @@ export function SpaceDetailPage() {
         {/* Amenities */}
         {space.amenities && space.amenities.length > 0 && (
           <div className="mt-4">
-            <p className="text-sm font-medium text-gray-700 mb-2">امکانات:</p>
+            <p className="text-sm font-medium text-gray-700 dark:text-slate-200 mb-2">امکانات:</p>
             <div className="flex flex-wrap gap-2">
               {space.amenities.map((a) => (
                 <span
                   key={a}
-                  className="text-xs bg-primary-50 text-primary-700 px-2.5 py-1 rounded-full border border-primary-100"
+                  className="text-xs bg-primary-50 dark:bg-primary-500/10 text-primary-700 dark:text-primary-300 px-2.5 py-1 rounded-full border border-primary-100 dark:border-primary-500/30"
                 >
                   {a}
                 </span>
@@ -214,12 +214,12 @@ export function SpaceDetailPage() {
 
         {/* Rules */}
         {space.rules && (
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl">
+          <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl">
             <div className="flex items-start gap-2">
-              <AlertTriangle size={15} className="text-amber-600 flex-shrink-0 mt-0.5" />
+              <AlertTriangle size={15} className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-xs font-semibold text-amber-700 mb-1">قوانین استفاده:</p>
-                <p className="text-xs text-amber-700 leading-relaxed">{space.rules}</p>
+                <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-1">قوانین استفاده:</p>
+                <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">{space.rules}</p>
               </div>
             </div>
           </div>
@@ -227,8 +227,8 @@ export function SpaceDetailPage() {
 
         {/* Action buttons — admins manage spaces, they do not reserve them */}
         {isAdmin ? (
-          <div className="mt-5 pt-4 border-t border-gray-100">
-            <div className="flex items-start gap-2 p-3 mb-3 bg-blue-50 border border-blue-200 rounded-xl text-sm text-blue-700">
+          <div className="mt-5 pt-4 border-t border-gray-100 dark:border-slate-800">
+            <div className="flex items-start gap-2 p-3 mb-3 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-xl text-sm text-blue-700 dark:text-blue-300">
               <ShieldCheck size={16} className="flex-shrink-0 mt-0.5" />
               <span>شما با نقش مدیر وارد شده‌اید. رزرو فضا مخصوص دانشجویان و تشکل‌هاست؛ از بخش مدیریت می‌توانید این فضا را ویرایش یا مدیریت کنید.</span>
             </div>
@@ -239,7 +239,7 @@ export function SpaceDetailPage() {
           </div>
         ) : (
           space.status === 'active' && (
-            <div className="flex flex-wrap gap-3 mt-5 pt-4 border-t border-gray-100">
+            <div className="flex flex-wrap gap-3 mt-5 pt-4 border-t border-gray-100 dark:border-slate-800">
               <Button onClick={() => setReserveModal(true)}>
                 <Calendar size={16} />
                 رزرو این فضا
@@ -263,22 +263,22 @@ export function SpaceDetailPage() {
           <h3 className="section-title mb-4">نظرات و امتیازات ({ratings.length})</h3>
           <div className="space-y-3">
             {ratings.map((rating) => (
-              <div key={rating.id} className="p-4 bg-gray-50 rounded-xl">
+              <div key={rating.id} className="p-4 bg-gray-50 dark:bg-slate-800 rounded-xl">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center">
-                      <span className="text-primary-700 text-xs font-semibold">
+                    <div className="w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-500/15 flex items-center justify-center">
+                      <span className="text-primary-700 dark:text-primary-300 text-xs font-semibold">
                         {rating.user?.full_name?.[0] ?? '?'}
                       </span>
                     </div>
-                    <span className="text-sm font-medium text-gray-700">{rating.user?.full_name ?? 'کاربر'}</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-slate-200">{rating.user?.full_name ?? 'کاربر'}</span>
                   </div>
                   <StarRating value={rating.overall_score} readonly size="sm" />
                 </div>
                 {rating.comment && (
-                  <p className="text-sm text-gray-600 mt-1">{rating.comment}</p>
+                  <p className="text-sm text-gray-600 dark:text-slate-300 mt-1">{rating.comment}</p>
                 )}
-                <p className="text-xs text-gray-400 mt-2">{rating.created_at.slice(0, 10)}</p>
+                <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">{rating.created_at.slice(0, 10)}</p>
               </div>
             ))}
           </div>
@@ -291,28 +291,28 @@ export function SpaceDetailPage() {
           <h3 className="section-title mb-4">بازخوردها ({feedbacks.length})</h3>
           <div className="space-y-3">
             {feedbacks.map((fb) => (
-              <div key={fb.id} className="p-4 bg-gray-50 rounded-xl">
+              <div key={fb.id} className="p-4 bg-gray-50 dark:bg-slate-800 rounded-xl">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center">
-                    <span className="text-primary-700 text-xs font-semibold">
+                  <div className="w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-500/15 flex items-center justify-center">
+                    <span className="text-primary-700 dark:text-primary-300 text-xs font-semibold">
                       {fb.is_anonymous ? '؟' : fb.user?.full_name?.[0] ?? '?'}
                     </span>
                   </div>
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
                     {fb.is_anonymous ? 'ناشناس' : (fb.user?.full_name ?? 'کاربر')}
                   </span>
                   {fb.sentiment && (
                     <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      fb.sentiment === 'positive' ? 'bg-green-100 text-green-700' :
-                      fb.sentiment === 'negative' ? 'bg-red-100 text-red-700' :
-                      'bg-gray-100 text-gray-600'
+                      fb.sentiment === 'positive' ? 'bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-300' :
+                      fb.sentiment === 'negative' ? 'bg-red-100 dark:bg-red-500/15 text-red-700 dark:text-red-300' :
+                      'bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-slate-300'
                     }`}>
                       {fb.sentiment === 'positive' ? 'مثبت' : fb.sentiment === 'negative' ? 'منفی' : 'خنثی'}
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-600">{fb.content}</p>
-                <p className="text-xs text-gray-400 mt-2">{fb.created_at.slice(0, 10)}</p>
+                <p className="text-sm text-gray-600 dark:text-slate-300">{fb.content}</p>
+                <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">{fb.created_at.slice(0, 10)}</p>
               </div>
             ))}
           </div>
@@ -431,7 +431,7 @@ export function SpaceDetailPage() {
             { key: 'management_score', label: 'مدیریت' },
           ].map((item) => (
             <div key={item.key} className="flex items-center justify-between">
-              <label className="text-sm text-gray-700">{item.label}</label>
+              <label className="text-sm text-gray-700 dark:text-slate-200">{item.label}</label>
               <StarRating
                 value={(ratingForm as unknown as Record<string, number>)[item.key] ?? 0}
                 onChange={(v) => setRatingForm((p) => ({ ...p, [item.key]: v }))}
@@ -483,7 +483,7 @@ export function SpaceDetailPage() {
               onChange={(e) => setFeedbackForm((p) => ({ ...p, is_anonymous: e.target.checked }))}
               className="w-4 h-4 rounded accent-primary-600"
             />
-            <span className="text-sm text-gray-700">ارسال به صورت ناشناس</span>
+            <span className="text-sm text-gray-700 dark:text-slate-200">ارسال به صورت ناشناس</span>
           </label>
           <div className="flex gap-3">
             <Button

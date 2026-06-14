@@ -4,6 +4,7 @@ import { Layout } from './components/layout/Layout';
 
 // Public pages
 import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 // Auth pages
 import { LoginPage } from './pages/auth/LoginPage';
@@ -73,8 +74,8 @@ export default function App() {
       <Route path="/admin/analytics" element={<AdminRoute><AdminAnalyticsPage /></AdminRoute>} />
       <Route path="/admin/users" element={<AdminRoute><AdminUsersPage /></AdminRoute>} />
 
-      {/* Default redirect */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* 404 — unknown routes */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

@@ -35,49 +35,49 @@ export function ReservationCard({
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="font-semibold text-gray-900 truncate">{reservation.activity_title}</h3>
-            <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-0.5">
+            <h3 className="font-semibold text-gray-900 truncate dark:text-slate-100">{reservation.activity_title}</h3>
+            <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-0.5 dark:bg-slate-800 dark:text-slate-300">
               {activityLabels[reservation.activity_type]}
             </span>
           </div>
           {reservation.space && (
-            <p className="text-sm text-gray-500">{reservation.space.name}</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">{reservation.space.name}</p>
           )}
           {showUser && reservation.user && (
-            <p className="text-xs text-gray-400 mt-0.5">{reservation.user.full_name}</p>
+            <p className="text-xs text-gray-400 mt-0.5 dark:text-slate-500">{reservation.user.full_name}</p>
           )}
         </div>
         <Badge variant={reservation.status} />
       </div>
 
       <div className="grid grid-cols-2 gap-2 mb-4">
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <Calendar size={14} className="text-gray-400 flex-shrink-0" />
+        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+          <Calendar size={14} className="text-gray-400 flex-shrink-0 dark:text-slate-500" />
           <span>{reservation.reservation_date}</span>
         </div>
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <Clock size={14} className="text-gray-400 flex-shrink-0" />
+        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+          <Clock size={14} className="text-gray-400 flex-shrink-0 dark:text-slate-500" />
           <span>
             {reservation.start_time.slice(0, 5)} - {reservation.end_time.slice(0, 5)}
           </span>
         </div>
         {reservation.expected_attendees && (
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Users size={14} className="text-gray-400 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+            <Users size={14} className="text-gray-400 flex-shrink-0 dark:text-slate-500" />
             <span>{reservation.expected_attendees} نفر</span>
           </div>
         )}
         {reservation.organization_name && (
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <MapPin size={14} className="text-gray-400 flex-shrink-0" />
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
+            <MapPin size={14} className="text-gray-400 flex-shrink-0 dark:text-slate-500" />
             <span className="truncate">{reservation.organization_name}</span>
           </div>
         )}
       </div>
 
       {reservation.admin_note && (
-        <div className="bg-gray-50 rounded-lg p-3 mb-4 text-sm text-gray-600 border border-gray-200">
-          <span className="font-medium text-gray-700">یادداشت مدیر: </span>
+        <div className="note mb-4">
+          <span className="font-medium text-gray-700 dark:text-slate-200">یادداشت مدیر: </span>
           {reservation.admin_note}
         </div>
       )}

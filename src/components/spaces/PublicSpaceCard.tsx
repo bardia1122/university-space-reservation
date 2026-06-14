@@ -28,8 +28,8 @@ export function PublicSpaceCard({ space, onReserve, onInfo, isAdmin = false }: P
         <div className="absolute top-3 left-3">
           <Badge variant={space.status} />
         </div>
-        <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-xs font-medium text-gray-700 shadow-sm">
-          <TypeIcon size={13} className="text-primary-600" />
+        <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-xs font-medium text-gray-700 shadow-sm dark:bg-slate-900/85 dark:text-slate-100 dark:ring-1 dark:ring-white/10">
+          <TypeIcon size={13} className="text-primary-600 dark:text-primary-400" />
           {spaceTypeLabels[space.space_type]}
         </div>
       </div>
@@ -37,26 +37,26 @@ export function PublicSpaceCard({ space, onReserve, onInfo, isAdmin = false }: P
       {/* Body */}
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-gray-900">{space.name}</h3>
+          <h3 className="font-semibold text-gray-900 dark:text-slate-100">{space.name}</h3>
           <div className="flex items-center gap-1 flex-shrink-0">
             <Star size={14} className="fill-amber-400 text-amber-400" />
-            <span className="text-sm font-medium text-gray-700">{space.avg_rating.toFixed(1)}</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-slate-200">{space.avg_rating.toFixed(1)}</span>
           </div>
         </div>
 
         {space.description && (
-          <p className="text-sm text-gray-500 mt-2 line-clamp-2">{space.description}</p>
+          <p className="text-sm text-gray-500 mt-2 line-clamp-2 dark:text-slate-400">{space.description}</p>
         )}
 
         <div className="space-y-1.5 mt-3 mb-4">
           {space.location && (
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-slate-400">
               <MapPin size={13} className="flex-shrink-0" />
               <span className="truncate">{space.location}</span>
             </div>
           )}
           {space.capacity && (
-            <div className="flex items-center gap-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-slate-400">
               <Users size={13} className="flex-shrink-0" />
               <span>ظرفیت: {space.capacity} نفر</span>
             </div>
@@ -75,7 +75,7 @@ export function PublicSpaceCard({ space, onReserve, onInfo, isAdmin = false }: P
           </button>
           <button
             onClick={() => onInfo(space)}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-white text-gray-700 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-white text-gray-700 text-sm font-medium border border-gray-300 hover:bg-gray-50 transition-colors dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-700"
           >
             <Info size={15} />
             اطلاعات بیشتر

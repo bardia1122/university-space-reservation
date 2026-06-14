@@ -12,6 +12,7 @@ import { Badge } from '../components/common/Badge';
 import { Modal } from '../components/common/Modal';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { PublicSpaceCard } from '../components/spaces/PublicSpaceCard';
+import { ThemeToggle } from '../components/common/ThemeToggle';
 import {
   spaceTypeLabels, spaceTypeIcons, spaceImage,
 } from '../lib/spaceVisuals';
@@ -22,25 +23,25 @@ const benefits = [
     icon: ShieldCheck,
     title: 'شفافیت کامل',
     desc: 'فرآیند رزرو و تأیید کاملاً شفاف؛ وضعیت هر درخواست را لحظه‌ای دنبال کنید.',
-    color: 'text-blue-600 bg-blue-50',
+    color: 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-500/15',
   },
   {
     icon: Clock,
     title: 'صرفه‌جویی در زمان',
     desc: 'بدون مراجعه حضوری و کاغذبازی، فضای مورد نظر را در چند ثانیه رزرو کنید.',
-    color: 'text-emerald-600 bg-emerald-50',
+    color: 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-500/15',
   },
   {
     icon: CalendarCheck,
     title: 'رزرو آنلاین آسان',
     desc: 'تقویم دسترس‌پذیری فضاها را ببینید و زمان دلخواه خود را انتخاب کنید.',
-    color: 'text-amber-600 bg-amber-50',
+    color: 'text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-500/15',
   },
   {
     icon: BarChart3,
     title: 'مدیریت هوشمند',
     desc: 'گزارش‌ها و تحلیل‌های دقیق برای مدیریت بهینهٔ فضاهای دانشگاه.',
-    color: 'text-purple-600 bg-purple-50',
+    color: 'text-purple-600 bg-purple-50 dark:text-purple-400 dark:bg-purple-500/15',
   },
 ];
 
@@ -81,29 +82,30 @@ export function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       {/* ---------- Navbar ---------- */}
-      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-gray-100">
+      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-gray-100 dark:bg-slate-950/90 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Logo size={36} />
-          <nav className="hidden md:flex items-center gap-7 text-sm text-gray-600">
-            <a href="#spaces" onClick={scrollToSection('spaces')} className="hover:text-primary-600 transition-colors">فضاها</a>
-            <a href="#benefits" onClick={scrollToSection('benefits')} className="hover:text-primary-600 transition-colors">مزایا</a>
-            <a href="#how" onClick={scrollToSection('how')} className="hover:text-primary-600 transition-colors">راهنما</a>
+          <nav className="hidden md:flex items-center gap-7 text-sm text-gray-600 dark:text-slate-300">
+            <a href="#spaces" onClick={scrollToSection('spaces')} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">فضاها</a>
+            <a href="#benefits" onClick={scrollToSection('benefits')} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مزایا</a>
+            <a href="#how" onClick={scrollToSection('how')} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">راهنما</a>
           </nav>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             {isAuthenticated ? (
               <button
                 onClick={goToPanel}
                 title="ورود به پنل کاربری"
-                className="flex items-center gap-2 pr-1 pl-3 py-1 rounded-full border border-gray-200 hover:border-primary-300 hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 pr-1 pl-3 py-1 rounded-full border border-gray-200 hover:border-primary-300 hover:bg-gray-50 transition-colors dark:border-slate-700 dark:hover:border-primary-500 dark:hover:bg-slate-800"
               >
-                <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary-700 font-semibold text-sm">
+                <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 dark:bg-primary-900/40">
+                  <span className="text-primary-700 font-semibold text-sm dark:text-primary-300">
                     {user?.full_name?.[0] ?? '?'}
                   </span>
                 </span>
-                <span className="text-sm font-medium text-gray-700 max-w-[140px] truncate hidden sm:inline">
+                <span className="text-sm font-medium text-gray-700 max-w-[140px] truncate hidden sm:inline dark:text-slate-200">
                   {user?.full_name}
                 </span>
               </button>
@@ -167,8 +169,8 @@ export function HomePage() {
       {/* ---------- Spaces ---------- */}
       <section id="spaces" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 scroll-mt-20">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">فضاهای قابل رزرو</h2>
-          <p className="text-gray-500 mt-2">فضای مناسب رویداد خود را انتخاب کنید</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">فضاهای قابل رزرو</h2>
+          <p className="text-gray-500 mt-2 dark:text-slate-400">فضای مناسب رویداد خود را انتخاب کنید</p>
         </div>
 
         {/* type filter chips */}
@@ -178,7 +180,7 @@ export function HomePage() {
             className={`inline-flex items-center gap-1.5 text-sm px-4 py-2 rounded-full border transition-colors ${
               typeFilter === ''
                 ? 'bg-primary-600 text-white border-primary-600'
-                : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300'
+                : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:border-primary-500'
             }`}
           >
             <Layers size={15} />
@@ -193,7 +195,7 @@ export function HomePage() {
                 className={`inline-flex items-center gap-1.5 text-sm px-4 py-2 rounded-full border transition-colors ${
                   typeFilter === t
                     ? 'bg-primary-600 text-white border-primary-600'
-                    : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:border-primary-500'
                 }`}
               >
                 <Icon size={15} />
@@ -221,11 +223,11 @@ export function HomePage() {
       </section>
 
       {/* ---------- Benefits ---------- */}
-      <section id="benefits" className="bg-gray-50 border-y border-gray-100 scroll-mt-20">
+      <section id="benefits" className="bg-gray-50 border-y border-gray-100 scroll-mt-20 dark:bg-slate-900 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">چرا این سامانه؟</h2>
-            <p className="text-gray-500 mt-2">مزایای استفاده از سامانهٔ رزرو فضاها</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">چرا این سامانه؟</h2>
+            <p className="text-gray-500 mt-2 dark:text-slate-400">مزایای استفاده از سامانهٔ رزرو فضاها</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {benefits.map((b) => (
@@ -233,8 +235,8 @@ export function HomePage() {
                 <div className={`w-12 h-12 rounded-xl ${b.color} flex items-center justify-center mx-auto mb-4`}>
                   <b.icon size={24} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1.5">{b.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{b.desc}</p>
+                <h3 className="font-semibold text-gray-900 mb-1.5 dark:text-slate-100">{b.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed dark:text-slate-400">{b.desc}</p>
               </div>
             ))}
           </div>
@@ -244,7 +246,7 @@ export function HomePage() {
       {/* ---------- How it works ---------- */}
       <section id="how" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 scroll-mt-20">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">رزرو در سه گام</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">رزرو در سه گام</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
@@ -256,8 +258,8 @@ export function HomePage() {
               <div className="w-10 h-10 rounded-full bg-primary-600 text-white font-bold flex items-center justify-center mb-4">
                 {step.n}
               </div>
-              <h3 className="font-semibold text-gray-900 mb-1.5">{step.t}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{step.d}</p>
+              <h3 className="font-semibold text-gray-900 mb-1.5 dark:text-slate-100">{step.t}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed dark:text-slate-400">{step.d}</p>
             </div>
           ))}
         </div>
@@ -279,10 +281,10 @@ export function HomePage() {
       </section>
 
       {/* ---------- Footer ---------- */}
-      <footer className="border-t border-gray-100 bg-white">
+      <footer className="border-t border-gray-100 bg-white dark:border-slate-800 dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Logo size={32} />
-          <p className="text-sm text-gray-400">© ۱۴۰۵ سامانهٔ فضاهای دانشگاه — تمامی حقوق محفوظ است.</p>
+          <p className="text-sm text-gray-400 dark:text-slate-500">© ۱۴۰۵ سامانهٔ فضاهای دانشگاه — تمامی حقوق محفوظ است.</p>
         </div>
       </footer>
 

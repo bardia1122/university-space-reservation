@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Filter, Building2 } from 'lucide-react';
 import { spacesApi } from '../../api/spaces';
@@ -17,8 +18,22 @@ const typeFilters: { value: SpaceType | ''; label: string }[] = [
 ];
 
 export function SpacesPage() {
-  const [search, setSearch] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get('q') ?? '');
   const [typeFilter, setTypeFilter] = useState<SpaceType | ''>('');
+
+  // Keep the search box in sync when arriving via the header search (?q=...)
+  useEffect(() => {
+    setSearch(searchParams.get('q') ?? '');
+  }, [searchParams]);
+
+  const updateSearch = (value: string) => {
+    setSearch(value);
+    const next = new URLSearchParams(searchParams);
+    if (value) next.set('q', value);
+    else next.delete('q');
+    setSearchParams(next, { replace: true });
+  };
 
   const { data: spaces = [], isLoading } = useQuery({
     queryKey: ['spaces', typeFilter],
@@ -45,7 +60,7 @@ export function SpacesPage() {
               className="input-field pr-10"
               placeholder="جستجوی فضا..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => updateSearch(e.target.value)}
             />
           </div>
           <div className="flex items-center gap-2">
@@ -73,7 +88,7 @@ export function SpacesPage() {
               className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                 typeFilter === f.value
                   ? 'bg-primary-600 text-white border-primary-600'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300'
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-primary-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:border-primary-500'
               }`}
             >
               {f.label}
@@ -84,7 +99,7 @@ export function SpacesPage() {
 
       {/* Results count */}
       {!isLoading && (
-        <p className="text-sm text-gray-500 px-1">
+        <p className="text-sm text-gray-500 px-1 dark:text-slate-400">
           {filtered.length} فضا یافت شد
         </p>
       )}
