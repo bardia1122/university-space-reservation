@@ -25,6 +25,7 @@ import { Button } from '../../components/common/Button';
 import { Modal } from '../../components/common/Modal';
 import { StarRating } from '../../components/common/StarRating';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
+import { ClockTimePicker } from '../../components/common/ClockTimePicker';
 import type { ActivityType, RatingCreate } from '../../types';
 
 const activityOptions: { value: ActivityType; label: string }[] = [
@@ -413,21 +414,19 @@ export function SpaceDetailPage() {
             </div>
             <div>
               <label className="label">ساعت شروع *</label>
-              <input
-                type="time"
-                className="input-field"
+              <ClockTimePicker
                 value={reserveForm.start_time}
-                onChange={(e) => setReserveForm((p) => ({ ...p, start_time: e.target.value }))}
+                onChange={(v) => setReserveForm((p) => ({ ...p, start_time: v }))}
+                placeholder="انتخاب ساعت شروع"
                 required
               />
             </div>
             <div>
               <label className="label">ساعت پایان *</label>
-              <input
-                type="time"
-                className="input-field"
+              <ClockTimePicker
                 value={reserveForm.end_time}
-                onChange={(e) => setReserveForm((p) => ({ ...p, end_time: e.target.value }))}
+                onChange={(v) => setReserveForm((p) => ({ ...p, end_time: v }))}
+                placeholder="انتخاب ساعت پایان"
                 required
               />
             </div>
