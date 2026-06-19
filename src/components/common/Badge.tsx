@@ -1,10 +1,27 @@
 import { clsx } from 'clsx';
 
-type Variant = 'pending' | 'approved' | 'rejected' | 'cancelled' | 'completed' | 'expired' |
-  'open' | 'in_progress' | 'resolved' | 'closed' |
-  'under_review' | 'implemented' |
-  'active' | 'maintenance' | 'inactive' |
-  'blue' | 'green' | 'red' | 'yellow' | 'gray' | 'purple';
+type Variant =
+  | 'pending'
+  | 'approved'
+  | 'rejected'
+  | 'cancelled'
+  | 'completed'
+  | 'expired'
+  | 'open'
+  | 'in_progress'
+  | 'resolved'
+  | 'closed'
+  | 'under_review'
+  | 'implemented'
+  | 'active'
+  | 'maintenance'
+  | 'inactive'
+  | 'blue'
+  | 'green'
+  | 'red'
+  | 'yellow'
+  | 'gray'
+  | 'purple';
 
 const variantMap: Record<string, string> = {
   pending: 'bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-300',

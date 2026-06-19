@@ -27,8 +27,7 @@ export function MyReservationsPage() {
 
   const { data: reservations = [], isLoading } = useQuery({
     queryKey: ['my-reservations', user?.id, statusFilter],
-    queryFn: () =>
-      reservationsApi.getMyReservations(user!.id, statusFilter || undefined),
+    queryFn: () => reservationsApi.getMyReservations(user!.id, statusFilter || undefined),
     enabled: !!user,
   });
 
@@ -73,26 +72,19 @@ export function MyReservationsPage() {
         />
       ) : (
         <div className="space-y-4">
-          <p className="text-sm text-gray-500 dark:text-slate-400 px-1">{reservations.length} رزرو</p>
+          <p className="text-sm text-gray-500 dark:text-slate-400 px-1">
+            {reservations.length} رزرو
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {reservations.map((r) => (
-              <ReservationCard
-                key={r.id}
-                reservation={r}
-                onCancel={(id) => setCancelId(id)}
-              />
+              <ReservationCard key={r.id} reservation={r} onCancel={(id) => setCancelId(id)} />
             ))}
           </div>
         </div>
       )}
 
       {/* Cancel confirmation modal */}
-      <Modal
-        open={cancelId !== null}
-        onClose={() => setCancelId(null)}
-        title="لغو رزرو"
-        size="sm"
-      >
+      <Modal open={cancelId !== null} onClose={() => setCancelId(null)} title="لغو رزرو" size="sm">
         <div className="space-y-4">
           <p className="text-sm text-gray-600 dark:text-slate-300">
             آیا از لغو این رزرو مطمئن هستید؟ این عمل قابل بازگشت نیست.

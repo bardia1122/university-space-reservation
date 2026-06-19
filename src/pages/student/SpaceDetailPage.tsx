@@ -2,8 +2,19 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-  MapPin, Users, Clock, Shield, CheckCircle, Star,
-  Calendar, ChevronRight, Send, MessageSquare, AlertTriangle, Settings, ShieldCheck,
+  MapPin,
+  Users,
+  Clock,
+  Shield,
+  CheckCircle,
+  Star,
+  Calendar,
+  ChevronRight,
+  Send,
+  MessageSquare,
+  AlertTriangle,
+  Settings,
+  ShieldCheck,
 } from 'lucide-react';
 import { spacesApi } from '../../api/spaces';
 import { reservationsApi } from '../../api/reservations';
@@ -85,7 +96,9 @@ export function SpaceDetailPage() {
           activity_type: reserveForm.activity_type,
           activity_title: reserveForm.activity_title,
           activity_description: reserveForm.activity_description || undefined,
-          expected_attendees: reserveForm.expected_attendees ? Number(reserveForm.expected_attendees) : undefined,
+          expected_attendees: reserveForm.expected_attendees
+            ? Number(reserveForm.expected_attendees)
+            : undefined,
           organization_name: reserveForm.organization_name || undefined,
         },
         user!.id,
@@ -110,10 +123,7 @@ export function SpaceDetailPage() {
 
   const feedbackMutation = useMutation({
     mutationFn: () =>
-      feedbackApi.createFeedback(
-        { space_id: Number(id), ...feedbackForm },
-        user!.id,
-      ),
+      feedbackApi.createFeedback({ space_id: Number(id), ...feedbackForm }, user!.id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['feedbacks', id] });
       setFeedbackModal(false);
@@ -124,7 +134,8 @@ export function SpaceDetailPage() {
   });
 
   if (isLoading) return <LoadingSpinner fullPage />;
-  if (!space) return <div className="text-center py-20 text-gray-400 dark:text-slate-500">فضا یافت نشد</div>;
+  if (!space)
+    return <div className="text-center py-20 text-gray-400 dark:text-slate-500">فضا یافت نشد</div>;
 
   return (
     <div className="max-w-4xl space-y-5">
@@ -152,17 +163,25 @@ export function SpaceDetailPage() {
               <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100">{space.name}</h1>
               <Badge variant={space.status} />
             </div>
-            {space.name_en && <p className="text-gray-400 dark:text-slate-500 text-sm">{space.name_en}</p>}
+            {space.name_en && (
+              <p className="text-gray-400 dark:text-slate-500 text-sm">{space.name_en}</p>
+            )}
           </div>
           <div className="flex items-center gap-1.5">
             <Star size={18} className="fill-amber-400 text-amber-400" />
-            <span className="text-lg font-bold text-gray-900 dark:text-slate-100">{space.avg_rating.toFixed(1)}</span>
-            <span className="text-sm text-gray-400 dark:text-slate-500">({space.total_ratings} امتیاز)</span>
+            <span className="text-lg font-bold text-gray-900 dark:text-slate-100">
+              {space.avg_rating.toFixed(1)}
+            </span>
+            <span className="text-sm text-gray-400 dark:text-slate-500">
+              ({space.total_ratings} امتیاز)
+            </span>
           </div>
         </div>
 
         {space.description && (
-          <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4">{space.description}</p>
+          <p className="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+            {space.description}
+          </p>
         )}
 
         {/* Meta grid */}
@@ -216,10 +235,17 @@ export function SpaceDetailPage() {
         {space.rules && (
           <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl">
             <div className="flex items-start gap-2">
-              <AlertTriangle size={15} className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+              <AlertTriangle
+                size={15}
+                className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5"
+              />
               <div>
-                <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-1">قوانین استفاده:</p>
-                <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">{space.rules}</p>
+                <p className="text-xs font-semibold text-amber-700 dark:text-amber-300 mb-1">
+                  قوانین استفاده:
+                </p>
+                <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">
+                  {space.rules}
+                </p>
               </div>
             </div>
           </div>
@@ -230,7 +256,10 @@ export function SpaceDetailPage() {
           <div className="mt-5 pt-4 border-t border-gray-100 dark:border-slate-800">
             <div className="flex items-start gap-2 p-3 mb-3 bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/30 rounded-xl text-sm text-blue-700 dark:text-blue-300">
               <ShieldCheck size={16} className="flex-shrink-0 mt-0.5" />
-              <span>شما با نقش مدیر وارد شده‌اید. رزرو فضا مخصوص دانشجویان و تشکل‌هاست؛ از بخش مدیریت می‌توانید این فضا را ویرایش یا مدیریت کنید.</span>
+              <span>
+                شما با نقش مدیر وارد شده‌اید. رزرو فضا مخصوص دانشجویان و تشکل‌هاست؛ از بخش مدیریت
+                می‌توانید این فضا را ویرایش یا مدیریت کنید.
+              </span>
             </div>
             <Button onClick={() => navigate('/admin/spaces')}>
               <Settings size={16} />
@@ -271,14 +300,18 @@ export function SpaceDetailPage() {
                         {rating.user?.full_name?.[0] ?? '?'}
                       </span>
                     </div>
-                    <span className="text-sm font-medium text-gray-700 dark:text-slate-200">{rating.user?.full_name ?? 'کاربر'}</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
+                      {rating.user?.full_name ?? 'کاربر'}
+                    </span>
                   </div>
                   <StarRating value={rating.overall_score} readonly size="sm" />
                 </div>
                 {rating.comment && (
                   <p className="text-sm text-gray-600 dark:text-slate-300 mt-1">{rating.comment}</p>
                 )}
-                <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">{rating.created_at.slice(0, 10)}</p>
+                <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">
+                  {rating.created_at.slice(0, 10)}
+                </p>
               </div>
             ))}
           </div>
@@ -295,24 +328,34 @@ export function SpaceDetailPage() {
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-500/15 flex items-center justify-center">
                     <span className="text-primary-700 dark:text-primary-300 text-xs font-semibold">
-                      {fb.is_anonymous ? '؟' : fb.user?.full_name?.[0] ?? '?'}
+                      {fb.is_anonymous ? '؟' : (fb.user?.full_name?.[0] ?? '?')}
                     </span>
                   </div>
                   <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
                     {fb.is_anonymous ? 'ناشناس' : (fb.user?.full_name ?? 'کاربر')}
                   </span>
                   {fb.sentiment && (
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      fb.sentiment === 'positive' ? 'bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-300' :
-                      fb.sentiment === 'negative' ? 'bg-red-100 dark:bg-red-500/15 text-red-700 dark:text-red-300' :
-                      'bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-slate-300'
-                    }`}>
-                      {fb.sentiment === 'positive' ? 'مثبت' : fb.sentiment === 'negative' ? 'منفی' : 'خنثی'}
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded-full ${
+                        fb.sentiment === 'positive'
+                          ? 'bg-green-100 dark:bg-green-500/15 text-green-700 dark:text-green-300'
+                          : fb.sentiment === 'negative'
+                            ? 'bg-red-100 dark:bg-red-500/15 text-red-700 dark:text-red-300'
+                            : 'bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-slate-300'
+                      }`}
+                    >
+                      {fb.sentiment === 'positive'
+                        ? 'مثبت'
+                        : fb.sentiment === 'negative'
+                          ? 'منفی'
+                          : 'خنثی'}
                     </span>
                   )}
                 </div>
                 <p className="text-sm text-gray-600 dark:text-slate-300">{fb.content}</p>
-                <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">{fb.created_at.slice(0, 10)}</p>
+                <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">
+                  {fb.created_at.slice(0, 10)}
+                </p>
               </div>
             ))}
           </div>
@@ -322,7 +365,10 @@ export function SpaceDetailPage() {
       {/* Reserve Modal */}
       <Modal open={reserveModal} onClose={() => setReserveModal(false)} title="رزرو فضا" size="lg">
         <form
-          onSubmit={(e) => { e.preventDefault(); reserveMutation.mutate(); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            reserveMutation.mutate();
+          }}
           className="space-y-4"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -341,10 +387,14 @@ export function SpaceDetailPage() {
               <select
                 className="input-field"
                 value={reserveForm.activity_type}
-                onChange={(e) => setReserveForm((p) => ({ ...p, activity_type: e.target.value as ActivityType }))}
+                onChange={(e) =>
+                  setReserveForm((p) => ({ ...p, activity_type: e.target.value as ActivityType }))
+                }
               >
                 {activityOptions.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
                 ))}
               </select>
             </div>
@@ -355,7 +405,9 @@ export function SpaceDetailPage() {
                 className="input-field"
                 value={reserveForm.reservation_date}
                 min={new Date().toISOString().slice(0, 10)}
-                onChange={(e) => setReserveForm((p) => ({ ...p, reservation_date: e.target.value }))}
+                onChange={(e) =>
+                  setReserveForm((p) => ({ ...p, reservation_date: e.target.value }))
+                }
                 required
               />
             </div>
@@ -386,7 +438,9 @@ export function SpaceDetailPage() {
                 className="input-field"
                 placeholder="تعداد نفرات"
                 value={reserveForm.expected_attendees}
-                onChange={(e) => setReserveForm((p) => ({ ...p, expected_attendees: e.target.value }))}
+                onChange={(e) =>
+                  setReserveForm((p) => ({ ...p, expected_attendees: e.target.value }))
+                }
                 min="1"
                 max={space.capacity ?? 9999}
               />
@@ -397,7 +451,9 @@ export function SpaceDetailPage() {
                 className="input-field"
                 placeholder="نام سازمان یا تشکل"
                 value={reserveForm.organization_name}
-                onChange={(e) => setReserveForm((p) => ({ ...p, organization_name: e.target.value }))}
+                onChange={(e) =>
+                  setReserveForm((p) => ({ ...p, organization_name: e.target.value }))
+                }
               />
             </div>
             <div className="sm:col-span-2">
@@ -406,12 +462,18 @@ export function SpaceDetailPage() {
                 className="input-field min-h-20 resize-none"
                 placeholder="توضیحات بیشتر درباره فعالیت..."
                 value={reserveForm.activity_description}
-                onChange={(e) => setReserveForm((p) => ({ ...p, activity_description: e.target.value }))}
+                onChange={(e) =>
+                  setReserveForm((p) => ({ ...p, activity_description: e.target.value }))
+                }
               />
             </div>
           </div>
           <div className="flex gap-3 pt-2">
-            <Button type="submit" loading={reserveMutation.isPending} className="flex-1 justify-center">
+            <Button
+              type="submit"
+              loading={reserveMutation.isPending}
+              className="flex-1 justify-center"
+            >
               ثبت درخواست رزرو
             </Button>
             <Button type="button" variant="secondary" onClick={() => setReserveModal(false)}>

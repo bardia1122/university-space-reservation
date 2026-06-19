@@ -1,5 +1,12 @@
 import {
-  Goal, Dumbbell, Theater, Presentation, Mic, Store, PartyPopper, Building2,
+  Goal,
+  Dumbbell,
+  Theater,
+  Presentation,
+  Mic,
+  Store,
+  PartyPopper,
+  Building2,
   type LucideIcon,
 } from 'lucide-react';
 import type { Space, SpaceType } from '../types';

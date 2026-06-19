@@ -39,11 +39,7 @@ export function LogoMark({ size = 40, className }: { size?: number; className?: 
       </defs>
       <rect width="48" height="48" rx="12" fill={`url(#${gid})`} />
       {/* pediment roof */}
-      <path
-        d="M24 11.5 12 19.5h24L24 11.5Z"
-        fill="#fff"
-        opacity="0.95"
-      />
+      <path d="M24 11.5 12 19.5h24L24 11.5Z" fill="#fff" opacity="0.95" />
       {/* lintel */}
       <rect x="12" y="20.5" width="24" height="2.6" rx="1.3" fill="#fff" opacity="0.95" />
       {/* columns (symmetric around centre x=24) */}
@@ -82,7 +78,9 @@ export function Logo({
       <div className="flex items-center gap-3">
         <LogoMark size={size} />
         <div className="leading-tight">
-          <p className="font-bold text-gray-900 text-sm dark:text-slate-100">سامانه فضاهای دانشگاه</p>
+          <p className="font-bold text-gray-900 text-sm dark:text-slate-100">
+            سامانه فضاهای دانشگاه
+          </p>
           <p className="text-[10px] text-gray-400 dark:text-slate-500">رزرو و مدیریت یکپارچه</p>
         </div>
       </div>
@@ -94,7 +92,10 @@ export function Logo({
       <Link
         to={to}
         aria-label="بازگشت به صفحه اصلی"
-        className={clsx('inline-flex rounded-lg transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2', className)}
+        className={clsx(
+          'inline-flex rounded-lg transition-opacity hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
+          className,
+        )}
       >
         {content}
       </Link>

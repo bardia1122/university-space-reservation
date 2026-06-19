@@ -1,8 +1,14 @@
 import { USE_MOCK, delay, apiClient } from './client';
 import { db } from '../mock/data';
 import type {
-  Feedback, FeedbackCreate, Rating, RatingCreate,
-  Complaint, ComplaintCreate, Suggestion, SuggestionCreate,
+  Feedback,
+  FeedbackCreate,
+  Rating,
+  RatingCreate,
+  Complaint,
+  ComplaintCreate,
+  Suggestion,
+  SuggestionCreate,
 } from '../types';
 
 export const feedbackApi = {
@@ -69,7 +75,11 @@ export const feedbackApi = {
     return res.data;
   },
 
-  respondComplaint: async (id: number, adminResponse: string, status: string): Promise<Complaint> => {
+  respondComplaint: async (
+    id: number,
+    adminResponse: string,
+    status: string,
+  ): Promise<Complaint> => {
     if (USE_MOCK) {
       await delay();
       const c = db.complaints.respond(id, adminResponse, status);

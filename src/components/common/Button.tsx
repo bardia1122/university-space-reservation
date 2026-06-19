@@ -12,7 +12,8 @@ const variants = {
   primary: 'btn-primary',
   secondary: 'btn-secondary',
   danger: 'btn-danger',
-  ghost: 'inline-flex items-center justify-center gap-2 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors dark:text-slate-300 dark:hover:bg-slate-800',
+  ghost:
+    'inline-flex items-center justify-center gap-2 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors dark:text-slate-300 dark:hover:bg-slate-800',
 };
 
 const sizes = {

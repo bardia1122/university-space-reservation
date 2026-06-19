@@ -34,7 +34,10 @@ export function Header({ title, onMenuClick }: HeaderProps) {
 
       {/* Global search */}
       <form onSubmit={handleSearch} className="relative flex-1 max-w-md hidden sm:block">
-        <Search size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+        <Search
+          size={18}
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+        />
         <input
           type="search"
           value={query}
@@ -73,7 +76,9 @@ export function Header({ title, onMenuClick }: HeaderProps) {
               {user?.full_name?.[0] ?? '?'}
             </span>
           </div>
-          <span className="text-sm text-gray-700 font-medium dark:text-slate-200">{user?.full_name}</span>
+          <span className="text-sm text-gray-700 font-medium dark:text-slate-200">
+            {user?.full_name}
+          </span>
         </div>
       </div>
     </header>

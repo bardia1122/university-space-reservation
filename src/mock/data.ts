@@ -1,6 +1,4 @@
-import type {
-  User, Space, Reservation, Feedback, Rating, Complaint, Suggestion,
-} from '../types';
+import type { User, Space, Reservation, Feedback, Rating, Complaint, Suggestion } from '../types';
 
 export const mockUsers: User[] = [
   {
@@ -59,14 +57,16 @@ export const mockSpaces: Space[] = [
     name: 'زمین فوتبال اصلی',
     name_en: 'Main Football Field',
     space_type: 'football_field',
-    description: 'زمین فوتبال استاندارد با چمن مصنوعی و روشنایی کامل برای بازی شبانه. مناسب برای مسابقات و تمرین‌های رسمی.',
+    description:
+      'زمین فوتبال استاندارد با چمن مصنوعی و روشنایی کامل برای بازی شبانه. مناسب برای مسابقات و تمرین‌های رسمی.',
     capacity: 22,
     location: 'ضلع غربی دانشگاه',
     floor: 'همکف',
     building: 'مجموعه ورزشی',
     status: 'active',
     amenities: ['رختکن', 'دوش', 'نور شبانه', 'سکوی تماشاگر', 'پارکینگ'],
-    rules: 'استفاده از کفش استادیومی الزامی است. بازی در ساعات ۸ صبح تا ۱۰ شب مجاز است. حداکثر ۲ ساعت رزرو پیاپی مجاز است.',
+    rules:
+      'استفاده از کفش استادیومی الزامی است. بازی در ساعات ۸ صبح تا ۱۰ شب مجاز است. حداکثر ۲ ساعت رزرو پیاپی مجاز است.',
     image_url: undefined,
     avg_rating: 4.3,
     total_ratings: 28,
@@ -122,7 +122,8 @@ export const mockSpaces: Space[] = [
     name: 'پلاتوی فرهنگی مرکزی',
     name_en: 'Central Cultural Plaza',
     space_type: 'cultural_plaza',
-    description: 'فضای باز فرهنگی در قلب دانشگاه، مناسب برای اجراهای هنری، نمایش‌ها، غرفه‌های کتاب و رویدادهای فرهنگی.',
+    description:
+      'فضای باز فرهنگی در قلب دانشگاه، مناسب برای اجراهای هنری، نمایش‌ها، غرفه‌های کتاب و رویدادهای فرهنگی.',
     capacity: 500,
     location: 'مرکز دانشگاه',
     floor: 'همکف',
@@ -143,7 +144,8 @@ export const mockSpaces: Space[] = [
     name: 'سالن سمینار الف',
     name_en: 'Seminar Hall A',
     space_type: 'seminar_hall',
-    description: 'سالن مجهز برای برگزاری سمینارها، کارگاه‌ها و جلسات آموزشی. مجهز به پروژکتور و سیستم صوتی پیشرفته.',
+    description:
+      'سالن مجهز برای برگزاری سمینارها، کارگاه‌ها و جلسات آموزشی. مجهز به پروژکتور و سیستم صوتی پیشرفته.',
     capacity: 80,
     location: 'ساختمان اداری، طبقه دوم',
     floor: 'طبقه دوم',
@@ -185,13 +187,21 @@ export const mockSpaces: Space[] = [
     name: 'سالن کنفرانس بزرگ',
     name_en: 'Large Conference Hall',
     space_type: 'conference_hall',
-    description: 'سالن همایش بزرگ با ظرفیت بالا، مناسب برای کنفرانس‌های بین‌المللی، مراسم فارغ‌التحصیلی و رویدادهای بزرگ دانشگاهی.',
+    description:
+      'سالن همایش بزرگ با ظرفیت بالا، مناسب برای کنفرانس‌های بین‌المللی، مراسم فارغ‌التحصیلی و رویدادهای بزرگ دانشگاهی.',
     capacity: 300,
     location: 'ساختمان مرکزی، طبقه همکف',
     floor: 'همکف',
     building: 'ساختمان مرکزی',
     status: 'active',
-    amenities: ['سیستم صوتی حرفه‌ای', 'پروژکتور بزرگ', 'تهویه مطبوع', 'WiFi', 'استیج', 'روشنایی حرفه‌ای'],
+    amenities: [
+      'سیستم صوتی حرفه‌ای',
+      'پروژکتور بزرگ',
+      'تهویه مطبوع',
+      'WiFi',
+      'استیج',
+      'روشنایی حرفه‌ای',
+    ],
     rules: 'رزرو با حداقل ۷۲ ساعت قبل از برنامه. نیاز به تأیید معاونت دانشجویی.',
     image_url: undefined,
     avg_rating: 4.7,
@@ -334,7 +344,8 @@ export const mockReservations: Reservation[] = [
     expected_attendees: 150,
     organization_name: 'انجمن موسیقی دانشجویی',
     status: 'rejected',
-    admin_note: 'به دلیل تداخل با برنامه دیگر امکان تأیید وجود ندارد. لطفاً تاریخ دیگری انتخاب کنید.',
+    admin_note:
+      'به دلیل تداخل با برنامه دیگر امکان تأیید وجود ندارد. لطفاً تاریخ دیگری انتخاب کنید.',
     created_at: '2026-05-05T10:00:00Z',
     user: mockUsers[0],
     space: mockSpaces[3],
@@ -382,7 +393,8 @@ export const mockFeedbacks: Feedback[] = [
     id: 1,
     space_id: 2,
     reservation_id: undefined,
-    content: 'زمین فوتسال در وضعیت عالی بود. کفپوش تمیز و نور مناسب. پیشنهاد می‌کنم تعداد توپ‌های در اختیار بیشتر شود.',
+    content:
+      'زمین فوتسال در وضعیت عالی بود. کفپوش تمیز و نور مناسب. پیشنهاد می‌کنم تعداد توپ‌های در اختیار بیشتر شود.',
     is_anonymous: false,
     sentiment: 'positive',
     sentiment_score: 0.85,
@@ -396,7 +408,8 @@ export const mockFeedbacks: Feedback[] = [
     id: 2,
     space_id: 5,
     reservation_id: undefined,
-    content: 'سالن سمینار الف واقعاً عالی است. تجهیزات صوتی و تصویری بسیار باکیفیت. تنها مشکل کمبود پریز برق در سطح سالن است.',
+    content:
+      'سالن سمینار الف واقعاً عالی است. تجهیزات صوتی و تصویری بسیار باکیفیت. تنها مشکل کمبود پریز برق در سطح سالن است.',
     is_anonymous: false,
     sentiment: 'positive',
     sentiment_score: 0.75,
@@ -444,7 +457,8 @@ export const mockComplaints: Complaint[] = [
     reservation_id: undefined,
     category: 'noise',
     title: 'سروصدای بیش از حد در زمین فوتبال',
-    description: 'در طول هفته گذشته، تیم‌های مستقر در زمین فوتبال صدای بسیار بلندی ایجاد کرده‌اند که مزاحم کلاس‌های مجاور شده است.',
+    description:
+      'در طول هفته گذشته، تیم‌های مستقر در زمین فوتبال صدای بسیار بلندی ایجاد کرده‌اند که مزاحم کلاس‌های مجاور شده است.',
     is_anonymous: false,
     status: 'open',
     priority: 2,
@@ -461,7 +475,8 @@ export const mockComplaints: Complaint[] = [
     reservation_id: undefined,
     category: 'equipment',
     title: 'خرابی سیستم صوتی پلاتو',
-    description: 'سیستم صوتی پلاتوی فرهنگی در طول اجرای برنامه دچار نقص فنی شد و باعث اختلال در برنامه شد.',
+    description:
+      'سیستم صوتی پلاتوی فرهنگی در طول اجرای برنامه دچار نقص فنی شد و باعث اختلال در برنامه شد.',
     is_anonymous: false,
     status: 'in_progress',
     priority: 3,
@@ -478,7 +493,8 @@ export const mockComplaints: Complaint[] = [
     reservation_id: undefined,
     category: 'management',
     title: 'تأخیر در بررسی درخواست‌های رزرو',
-    description: 'درخواست رزرو برای سالن سمینار ب بیش از ۵ روز بدون پاسخ مانده است. این امر برنامه‌ریزی برنامه را دشوار می‌کند.',
+    description:
+      'درخواست رزرو برای سالن سمینار ب بیش از ۵ روز بدون پاسخ مانده است. این امر برنامه‌ریزی برنامه را دشوار می‌کند.',
     is_anonymous: true,
     status: 'resolved',
     priority: 1,
@@ -495,7 +511,8 @@ export const mockSuggestions: Suggestion[] = [
   {
     id: 1,
     title: 'برگزاری کارگاه هوش مصنوعی در هفته پژوهش',
-    description: 'پیشنهاد برگزاری یک دوره کارگاهی ۳ روزه درباره کاربردهای هوش مصنوعی در علوم پایه در قالب هفته پژوهش. این موضوع با توجه به اهمیت فعلی هوش مصنوعی می‌تواند جذاب باشد.',
+    description:
+      'پیشنهاد برگزاری یک دوره کارگاهی ۳ روزه درباره کاربردهای هوش مصنوعی در علوم پایه در قالب هفته پژوهش. این موضوع با توجه به اهمیت فعلی هوش مصنوعی می‌تواند جذاب باشد.',
     category: 'educational',
     upvotes: 47,
     status: 'under_review',
@@ -507,7 +524,8 @@ export const mockSuggestions: Suggestion[] = [
   {
     id: 2,
     title: 'ایجاد فضای مطالعه باز در محوطه',
-    description: 'با توجه به کمبود فضای مطالعه در فصل گرما، پیشنهاد می‌شود چند میز و صندلی در سایه‌های محوطه مرکزی نصب شود تا دانشجویان بتوانند در فضای باز مطالعه کنند.',
+    description:
+      'با توجه به کمبود فضای مطالعه در فصل گرما، پیشنهاد می‌شود چند میز و صندلی در سایه‌های محوطه مرکزی نصب شود تا دانشجویان بتوانند در فضای باز مطالعه کنند.',
     category: 'facilities',
     upvotes: 82,
     status: 'approved',
@@ -519,7 +537,8 @@ export const mockSuggestions: Suggestion[] = [
   {
     id: 3,
     title: 'سمینار کارآفرینی و استارت‌آپ',
-    description: 'پیشنهاد برگزاری سمینار ماهانه کارآفرینی با حضور کارآفرینان موفق ایرانی. این سمینارها می‌توانند انگیزه دانشجویان برای راه‌اندازی کسب‌وکار را افزایش دهند.',
+    description:
+      'پیشنهاد برگزاری سمینار ماهانه کارآفرینی با حضور کارآفرینان موفق ایرانی. این سمینارها می‌توانند انگیزه دانشجویان برای راه‌اندازی کسب‌وکار را افزایش دهند.',
     category: 'educational',
     upvotes: 63,
     status: 'pending',
@@ -531,7 +550,8 @@ export const mockSuggestions: Suggestion[] = [
   {
     id: 4,
     title: 'بهبود سیستم رزرو آنلاین',
-    description: 'اضافه کردن قابلیت اطلاع‌رسانی پیامکی و ایمیلی به سامانه رزرو تا دانشجویان از تغییرات وضعیت درخواست‌هایشان مطلع شوند.',
+    description:
+      'اضافه کردن قابلیت اطلاع‌رسانی پیامکی و ایمیلی به سامانه رزرو تا دانشجویان از تغییرات وضعیت درخواست‌هایشان مطلع شوند.',
     category: 'system',
     upvotes: 95,
     status: 'implemented',
@@ -543,7 +563,8 @@ export const mockSuggestions: Suggestion[] = [
   {
     id: 5,
     title: 'نمایشگاه دائمی دستاوردهای دانشجویی',
-    description: 'ایجاد یک فضای نمایشگاهی دائمی در راهروی اصلی برای نمایش پروژه‌های پایان‌نامه و دستاوردهای دانشجویی برجسته.',
+    description:
+      'ایجاد یک فضای نمایشگاهی دائمی در راهروی اصلی برای نمایش پروژه‌های پایان‌نامه و دستاوردهای دانشجویی برجسته.',
     category: 'facilities',
     upvotes: 38,
     status: 'pending',
@@ -555,22 +576,26 @@ export const mockSuggestions: Suggestion[] = [
 ];
 
 let _spaces = [...mockSpaces];
-let _reservations = [...mockReservations];
-let _complaints = [...mockComplaints];
-let _suggestions = [...mockSuggestions];
-let _ratings = [...mockRatings];
-let _feedbacks = [...mockFeedbacks];
-let _nextId = { reservations: 7, complaints: 4, suggestions: 6, feedbacks: 3, ratings: 3 };
+const _reservations = [...mockReservations];
+const _complaints = [...mockComplaints];
+const _suggestions = [...mockSuggestions];
+const _ratings = [...mockRatings];
+const _feedbacks = [...mockFeedbacks];
+const _nextId = { reservations: 7, complaints: 4, suggestions: 6, feedbacks: 3, ratings: 3 };
 
 export const db = {
   spaces: {
     getAll: (type?: string, status?: string) =>
-      _spaces.filter(
-        (s) => (!type || s.space_type === type) && (!status || s.status === status),
-      ),
+      _spaces.filter((s) => (!type || s.space_type === type) && (!status || s.status === status)),
     getById: (id: number) => _spaces.find((s) => s.id === id),
     create: (data: Partial<Space>) => {
-      const s = { ...data, id: _spaces.length + 1, avg_rating: 0, total_ratings: 0, created_at: new Date().toISOString() } as Space;
+      const s = {
+        ...data,
+        id: _spaces.length + 1,
+        avg_rating: 0,
+        total_ratings: 0,
+        created_at: new Date().toISOString(),
+      } as Space;
       _spaces.push(s);
       return s;
     },
@@ -592,9 +617,7 @@ export const db = {
           (!filters?.space_id || r.space_id === filters.space_id),
       ),
     getByUser: (userId: number, status?: string) =>
-      _reservations.filter(
-        (r) => r.user_id === userId && (!status || r.status === status),
-      ),
+      _reservations.filter((r) => r.user_id === userId && (!status || r.status === status)),
     getById: (id: number) => _reservations.find((r) => r.id === id),
     create: (data: Partial<Reservation>) => {
       const r = {
@@ -621,8 +644,7 @@ export const db = {
     },
   },
   complaints: {
-    getAll: (status?: string) =>
-      _complaints.filter((c) => !status || c.status === status),
+    getAll: (status?: string) => _complaints.filter((c) => !status || c.status === status),
     getByUser: (userId: number) =>
       _complaints.filter((c) => (c as Complaint & { user_id?: number }).user_id === userId),
     create: (data: Partial<Complaint> & { user_id: number }) => {

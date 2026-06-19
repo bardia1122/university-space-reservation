@@ -19,7 +19,10 @@
   .input-field,
   .btn-primary,
   .btn-secondary {
-    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease;
   }
 
   ::-webkit-scrollbar {
@@ -153,5 +156,7 @@ th {
 .page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 200ms, transform 200ms;
+  transition:
+    opacity 200ms,
+    transform 200ms;
 }

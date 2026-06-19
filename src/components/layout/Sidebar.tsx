@@ -1,9 +1,16 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import {
-  LayoutDashboard, Building2, CalendarDays,
-  Lightbulb, ShieldCheck, LogOut, X,
-  BarChart3, Users, AlertCircle,
+  LayoutDashboard,
+  Building2,
+  CalendarDays,
+  Lightbulb,
+  ShieldCheck,
+  LogOut,
+  X,
+  BarChart3,
+  Users,
+  AlertCircle,
 } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import { Logo } from '../common/Logo';
@@ -46,7 +53,10 @@ export function Sidebar({ mobileOpen, onClose }: SidebarProps) {
       <div className="flex items-center justify-between px-5 h-16 border-b border-gray-100 dark:border-slate-800">
         <Logo size={36} to="/" />
         {onClose && (
-          <button onClick={onClose} className="lg:hidden p-1 text-gray-400 hover:text-gray-600 dark:hover:text-slate-200">
+          <button
+            onClick={onClose}
+            className="lg:hidden p-1 text-gray-400 hover:text-gray-600 dark:hover:text-slate-200"
+          >
             <X size={20} />
           </button>
         )}
@@ -104,7 +114,9 @@ export function Sidebar({ mobileOpen, onClose }: SidebarProps) {
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate dark:text-slate-100">{user?.full_name}</p>
+            <p className="text-sm font-medium text-gray-900 truncate dark:text-slate-100">
+              {user?.full_name}
+            </p>
             <p className="text-xs text-gray-400 truncate dark:text-slate-500">{user?.email}</p>
           </div>
         </div>

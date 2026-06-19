@@ -41,7 +41,9 @@ export function SpaceCard({ space }: SpaceCardProps) {
         </h3>
 
         {space.description && (
-          <p className="text-sm text-gray-500 mt-2 mb-4 line-clamp-2 dark:text-slate-400">{space.description}</p>
+          <p className="text-sm text-gray-500 mt-2 mb-4 line-clamp-2 dark:text-slate-400">
+            {space.description}
+          </p>
         )}
 
         {/* Meta */}
@@ -68,8 +70,12 @@ export function SpaceCard({ space }: SpaceCardProps) {
         <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100 dark:border-slate-800">
           <div className="flex items-center gap-1">
             <Star size={14} className="fill-amber-400 text-amber-400" />
-            <span className="text-sm font-medium text-gray-700 dark:text-slate-200">{space.avg_rating.toFixed(1)}</span>
-            <span className="text-xs text-gray-400 dark:text-slate-500">({space.total_ratings})</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
+              {space.avg_rating.toFixed(1)}
+            </span>
+            <span className="text-xs text-gray-400 dark:text-slate-500">
+              ({space.total_ratings})
+            </span>
           </div>
           <span className="text-xs text-primary-600 font-medium group-hover:underline dark:text-primary-400">
             مشاهده و رزرو

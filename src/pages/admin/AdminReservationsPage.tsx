@@ -40,8 +40,7 @@ export function AdminReservationsPage() {
   });
 
   const reviewMutation = useMutation({
-    mutationFn: () =>
-      reservationsApi.review(reviewId!, reviewAction, adminNote || undefined),
+    mutationFn: () => reservationsApi.review(reviewId!, reviewAction, adminNote || undefined),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['admin-reservations'] });
       qc.invalidateQueries({ queryKey: ['admin-dashboard-stats'] });
@@ -105,12 +104,19 @@ export function AdminReservationsPage() {
               </thead>
               <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {reservations.map((r) => (
-                  <tr key={r.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                  <tr
+                    key={r.id}
+                    className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
+                  >
                     <td className="px-4 py-3">
                       <div className="max-w-[160px]">
-                        <p className="font-medium text-gray-900 dark:text-slate-100 truncate">{r.activity_title}</p>
+                        <p className="font-medium text-gray-900 dark:text-slate-100 truncate">
+                          {r.activity_title}
+                        </p>
                         {r.organization_name && (
-                          <p className="text-xs text-gray-400 dark:text-slate-500 truncate mt-0.5">{r.organization_name}</p>
+                          <p className="text-xs text-gray-400 dark:text-slate-500 truncate mt-0.5">
+                            {r.organization_name}
+                          </p>
                         )}
                       </div>
                     </td>
@@ -120,7 +126,9 @@ export function AdminReservationsPage() {
                     <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">
                       <p>{r.user?.full_name ?? '—'}</p>
                       {r.user?.department && (
-                        <p className="text-xs text-gray-400 dark:text-slate-500">{r.user.department}</p>
+                        <p className="text-xs text-gray-400 dark:text-slate-500">
+                          {r.user.department}
+                        </p>
                       )}
                     </td>
                     <td className="px-4 py-3 text-gray-600 dark:text-slate-300 whitespace-nowrap">
@@ -177,7 +185,9 @@ export function AdminReservationsPage() {
               : 'لطفاً دلیل رد رزرو را وارد کنید.'}
           </p>
           <div>
-            <label className="label">یادداشت {reviewAction === 'rejected' ? '(اجباری)' : '(اختیاری)'}</label>
+            <label className="label">
+              یادداشت {reviewAction === 'rejected' ? '(اجباری)' : '(اختیاری)'}
+            </label>
             <textarea
               className="input-field min-h-20 resize-none"
               placeholder={
@@ -198,9 +208,13 @@ export function AdminReservationsPage() {
               className="flex-1 justify-center"
             >
               {reviewAction === 'approved' ? (
-                <><CheckCircle size={15} /> تأیید</>
+                <>
+                  <CheckCircle size={15} /> تأیید
+                </>
               ) : (
-                <><XCircle size={15} /> رد</>
+                <>
+                  <XCircle size={15} /> رد
+                </>
               )}
             </Button>
             <Button variant="secondary" onClick={() => setReviewId(null)}>

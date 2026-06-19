@@ -1,11 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
 import {
-  CalendarDays, Users, Building2, AlertCircle,
-  Clock, CheckCircle, Star, TrendingUp,
+  CalendarDays,
+  Users,
+  Building2,
+  AlertCircle,
+  Clock,
+  CheckCircle,
+  Star,
+  TrendingUp,
 } from 'lucide-react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, Legend,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
 } from 'recharts';
 import { analyticsApi } from '../../api/analytics';
 import { reservationsApi } from '../../api/reservations';
@@ -33,13 +48,55 @@ export function AdminDashboardPage() {
   if (statsLoading) return <LoadingSpinner fullPage />;
 
   const statCards = [
-    { label: 'کل رزروها', value: stats?.total_reservations ?? 0, icon: CalendarDays, color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-500/10' },
-    { label: 'رزروهای معلق', value: stats?.pending_reservations ?? 0, icon: Clock, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-500/10' },
-    { label: 'تأیید شده', value: stats?.approved_reservations ?? 0, icon: CheckCircle, color: 'text-green-600 dark:text-green-400', bg: 'bg-green-50 dark:bg-green-500/10' },
-    { label: 'کاربران', value: stats?.total_users ?? 0, icon: Users, color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-500/10' },
-    { label: 'فضاها', value: stats?.total_spaces ?? 0, icon: Building2, color: 'text-indigo-600', bg: 'bg-indigo-50 dark:bg-indigo-500/10' },
-    { label: 'شکایات باز', value: stats?.open_complaints ?? 0, icon: AlertCircle, color: 'text-red-600 dark:text-red-400', bg: 'bg-red-50 dark:bg-red-500/10' },
-    { label: 'میانگین امتیاز', value: stats?.avg_rating.toFixed(1) ?? '—', icon: Star, color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-500/10' },
+    {
+      label: 'کل رزروها',
+      value: stats?.total_reservations ?? 0,
+      icon: CalendarDays,
+      color: 'text-blue-600 dark:text-blue-400',
+      bg: 'bg-blue-50 dark:bg-blue-500/10',
+    },
+    {
+      label: 'رزروهای معلق',
+      value: stats?.pending_reservations ?? 0,
+      icon: Clock,
+      color: 'text-amber-600 dark:text-amber-400',
+      bg: 'bg-amber-50 dark:bg-amber-500/10',
+    },
+    {
+      label: 'تأیید شده',
+      value: stats?.approved_reservations ?? 0,
+      icon: CheckCircle,
+      color: 'text-green-600 dark:text-green-400',
+      bg: 'bg-green-50 dark:bg-green-500/10',
+    },
+    {
+      label: 'کاربران',
+      value: stats?.total_users ?? 0,
+      icon: Users,
+      color: 'text-purple-600 dark:text-purple-400',
+      bg: 'bg-purple-50 dark:bg-purple-500/10',
+    },
+    {
+      label: 'فضاها',
+      value: stats?.total_spaces ?? 0,
+      icon: Building2,
+      color: 'text-indigo-600',
+      bg: 'bg-indigo-50 dark:bg-indigo-500/10',
+    },
+    {
+      label: 'شکایات باز',
+      value: stats?.open_complaints ?? 0,
+      icon: AlertCircle,
+      color: 'text-red-600 dark:text-red-400',
+      bg: 'bg-red-50 dark:bg-red-500/10',
+    },
+    {
+      label: 'میانگین امتیاز',
+      value: stats?.avg_rating.toFixed(1) ?? '—',
+      icon: Star,
+      color: 'text-amber-600 dark:text-amber-400',
+      bg: 'bg-amber-50 dark:bg-amber-500/10',
+    },
     { label: 'بازخوردها', value: '—', icon: TrendingUp, color: 'text-teal-600', bg: 'bg-teal-50' },
   ];
 
@@ -48,7 +105,12 @@ export function AdminDashboardPage() {
     { name: 'معلق', value: stats?.pending_reservations ?? 0 },
     {
       name: 'سایر',
-      value: Math.max(0, (stats?.total_reservations ?? 0) - (stats?.approved_reservations ?? 0) - (stats?.pending_reservations ?? 0)),
+      value: Math.max(
+        0,
+        (stats?.total_reservations ?? 0) -
+          (stats?.approved_reservations ?? 0) -
+          (stats?.pending_reservations ?? 0),
+      ),
     },
   ].filter((d) => d.value > 0);
 
@@ -62,7 +124,9 @@ export function AdminDashboardPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {statCards.map((card) => (
           <div key={card.label} className="stat-card">
-            <div className={`w-10 h-10 rounded-xl ${card.bg} flex items-center justify-center mb-3`}>
+            <div
+              className={`w-10 h-10 rounded-xl ${card.bg} flex items-center justify-center mb-3`}
+            >
               <card.icon size={20} className={card.color} />
             </div>
             <p className="text-2xl font-bold text-gray-900 dark:text-slate-100">{card.value}</p>
@@ -83,18 +147,31 @@ export function AdminDashboardPage() {
                 <XAxis
                   dataKey="space_name"
                   tick={{ fontSize: 11 }}
-                  tickFormatter={(v: string) => v.length > 10 ? v.slice(0, 10) + '…' : v}
+                  tickFormatter={(v: string) => (v.length > 10 ? v.slice(0, 10) + '…' : v)}
                 />
                 <YAxis tick={{ fontSize: 11 }} />
                 <Tooltip
                   formatter={(value: number, name: string) => [
                     value,
-                    name === 'total_reservations' ? 'کل رزروها' :
-                    name === 'approved_count' ? 'تأیید شده' : name,
+                    name === 'total_reservations'
+                      ? 'کل رزروها'
+                      : name === 'approved_count'
+                        ? 'تأیید شده'
+                        : name,
                   ]}
                 />
-                <Bar dataKey="total_reservations" fill="#bfdbfe" name="total_reservations" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="approved_count" fill="#2563eb" name="approved_count" radius={[4, 4, 0, 0]} />
+                <Bar
+                  dataKey="total_reservations"
+                  fill="#bfdbfe"
+                  name="total_reservations"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="approved_count"
+                  fill="#2563eb"
+                  name="approved_count"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           ) : (
@@ -139,7 +216,9 @@ export function AdminDashboardPage() {
       <div className="card">
         <div className="px-5 py-4 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
           <h3 className="section-title">رزروهای معلق نیازمند بررسی</h3>
-          <span className="badge bg-amber-100 dark:bg-amber-500/15 text-amber-800 dark:text-amber-300">{pendingReservations.length} مورد</span>
+          <span className="badge bg-amber-100 dark:bg-amber-500/15 text-amber-800 dark:text-amber-300">
+            {pendingReservations.length} مورد
+          </span>
         </div>
         {pendingReservations.length === 0 ? (
           <div className="py-8 text-center text-gray-400 dark:text-slate-500 text-sm">
@@ -159,7 +238,10 @@ export function AdminDashboardPage() {
               </thead>
               <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {pendingReservations.slice(0, 5).map((r) => (
-                  <tr key={r.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                  <tr
+                    key={r.id}
+                    className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
+                  >
                     <td className="px-5 py-3 font-medium text-gray-900 dark:text-slate-100 max-w-xs truncate">
                       {r.activity_title}
                     </td>

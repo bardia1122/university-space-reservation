@@ -44,11 +44,15 @@ export function LoginPage() {
         {/* Logo */}
         <div className="mb-8 flex flex-col items-center">
           <Logo size={64} variant="stacked" to="/" />
-          <p className="text-gray-500 mt-3 text-sm text-center dark:text-slate-400">ورود به سامانه یکپارچه دانشگاه</p>
+          <p className="text-gray-500 mt-3 text-sm text-center dark:text-slate-400">
+            ورود به سامانه یکپارچه دانشگاه
+          </p>
         </div>
 
         <div className="card p-8">
-          <h2 className="text-lg font-semibold text-gray-800 mb-6 dark:text-slate-100">ورود به حساب کاربری</h2>
+          <h2 className="text-lg font-semibold text-gray-800 mb-6 dark:text-slate-100">
+            ورود به حساب کاربری
+          </h2>
 
           {error && (
             <div className="flex items-center gap-2 p-3 mb-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 dark:bg-red-500/10 dark:border-red-500/30 dark:text-red-300">
@@ -92,18 +96,17 @@ export function LoginPage() {
               </div>
             </div>
 
-            <Button
-              type="submit"
-              loading={loading}
-              className="w-full justify-center"
-            >
+            <Button type="submit" loading={loading} className="w-full justify-center">
               ورود به سامانه
             </Button>
           </form>
 
           <p className="text-sm text-center text-gray-500 mt-5 dark:text-slate-400">
             حساب کاربری ندارید؟{' '}
-            <Link to="/register" className="text-primary-600 font-medium hover:underline dark:text-primary-400">
+            <Link
+              to="/register"
+              className="text-primary-600 font-medium hover:underline dark:text-primary-400"
+            >
               ثبت‌نام کنید
             </Link>
           </p>
@@ -111,11 +114,16 @@ export function LoginPage() {
 
         {/* Demo credentials */}
         <div className="card p-4 mt-4 bg-blue-50 border-blue-100 dark:bg-primary-500/10 dark:border-primary-500/30">
-          <p className="text-xs font-semibold text-blue-700 mb-2 dark:text-primary-300">حساب‌های آزمایشی:</p>
+          <p className="text-xs font-semibold text-blue-700 mb-2 dark:text-primary-300">
+            حساب‌های آزمایشی:
+          </p>
           <div className="space-y-1.5">
             <button
               type="button"
-              onClick={() => { setEmail('student@uk.ac.ir'); setPassword('password123'); }}
+              onClick={() => {
+                setEmail('student@uk.ac.ir');
+                setPassword('password123');
+              }}
               className="flex items-center gap-2 w-full text-right text-xs text-blue-600 hover:text-blue-800 transition-colors dark:text-primary-300 dark:hover:text-primary-200"
             >
               <User size={14} className="flex-shrink-0" />
@@ -123,7 +131,10 @@ export function LoginPage() {
             </button>
             <button
               type="button"
-              onClick={() => { setEmail('admin@uk.ac.ir'); setPassword('password123'); }}
+              onClick={() => {
+                setEmail('admin@uk.ac.ir');
+                setPassword('password123');
+              }}
               className="flex items-center gap-2 w-full text-right text-xs text-blue-600 hover:text-blue-800 transition-colors dark:text-primary-300 dark:hover:text-primary-200"
             >
               <ShieldCheck size={14} className="flex-shrink-0" />

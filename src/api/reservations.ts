@@ -21,7 +21,10 @@ export const reservationsApi = {
     return res.data;
   },
 
-  getAll: async (filters?: { status?: ReservationStatus; space_id?: number }): Promise<Reservation[]> => {
+  getAll: async (filters?: {
+    status?: ReservationStatus;
+    space_id?: number;
+  }): Promise<Reservation[]> => {
     if (USE_MOCK) {
       await delay();
       return db.reservations.getAll(filters);

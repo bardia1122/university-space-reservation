@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Plus, Edit, Trash2, Building2 } from 'lucide-react';
+import { Plus, Edit, Trash2 } from 'lucide-react';
 import { spacesApi } from '../../api/spaces';
 import { Badge } from '../../components/common/Badge';
 import { Button } from '../../components/common/Button';
@@ -20,7 +20,7 @@ const spaceTypeOptions: { value: SpaceType; label: string }[] = [
 ];
 
 const spaceTypeLabels: Record<string, string> = Object.fromEntries(
-  spaceTypeOptions.map((o) => [o.value, o.label])
+  spaceTypeOptions.map((o) => [o.value, o.label]),
 );
 
 const defaultForm = {
@@ -59,7 +59,10 @@ export function AdminSpacesPage() {
         capacity: form.capacity ? Number(form.capacity) : undefined,
         amenities: form.amenities_raw ? form.amenities_raw.split('،').map((s) => s.trim()) : [],
       }),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ['spaces'] }); closeModal(); },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['spaces'] });
+      closeModal();
+    },
   });
 
   const updateMutation = useMutation({
@@ -72,12 +75,18 @@ export function AdminSpacesPage() {
         rules: form.rules || undefined,
         amenities: form.amenities_raw ? form.amenities_raw.split('،').map((s) => s.trim()) : [],
       }),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ['spaces'] }); closeModal(); },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['spaces'] });
+      closeModal();
+    },
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => spacesApi.delete(id),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ['spaces'] }); setDeleteId(null); },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['spaces'] });
+      setDeleteId(null);
+    },
   });
 
   const openCreate = () => {
@@ -107,7 +116,10 @@ export function AdminSpacesPage() {
     setModalOpen(true);
   };
 
-  const closeModal = () => { setModalOpen(false); setEditSpace(null); };
+  const closeModal = () => {
+    setModalOpen(false);
+    setEditSpace(null);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -145,10 +157,15 @@ export function AdminSpacesPage() {
               </thead>
               <tbody className="divide-y divide-gray-50 dark:divide-slate-800">
                 {spaces.map((space) => (
-                  <tr key={space.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                  <tr
+                    key={space.id}
+                    className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
+                  >
                     <td className="px-4 py-3">
                       <p className="font-medium text-gray-900 dark:text-slate-100">{space.name}</p>
-                      {space.name_en && <p className="text-xs text-gray-400 dark:text-slate-500">{space.name_en}</p>}
+                      {space.name_en && (
+                        <p className="text-xs text-gray-400 dark:text-slate-500">{space.name_en}</p>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">
                       {spaceTypeLabels[space.space_type] ?? space.space_type}
@@ -162,7 +179,9 @@ export function AdminSpacesPage() {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1">
                         <StarRating value={Math.round(space.avg_rating)} readonly size="sm" />
-                        <span className="text-xs text-gray-400 dark:text-slate-500">({space.total_ratings})</span>
+                        <span className="text-xs text-gray-400 dark:text-slate-500">
+                          ({space.total_ratings})
+                        </span>
                       </div>
                     </td>
                     <td className="px-4 py-3">
@@ -203,29 +222,48 @@ export function AdminSpacesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="label">نام فضا *</label>
-              <input className="input-field" required value={form.name}
-                onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
+              <input
+                className="input-field"
+                required
+                value={form.name}
+                onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+              />
             </div>
             <div>
               <label className="label">نام انگلیسی</label>
-              <input className="input-field" value={form.name_en}
-                onChange={(e) => setForm((p) => ({ ...p, name_en: e.target.value }))} />
+              <input
+                className="input-field"
+                value={form.name_en}
+                onChange={(e) => setForm((p) => ({ ...p, name_en: e.target.value }))}
+              />
             </div>
             {!editSpace && (
               <div>
                 <label className="label">نوع فضا *</label>
-                <select className="input-field" value={form.space_type}
-                  onChange={(e) => setForm((p) => ({ ...p, space_type: e.target.value as SpaceType }))}>
+                <select
+                  className="input-field"
+                  value={form.space_type}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, space_type: e.target.value as SpaceType }))
+                  }
+                >
                   {spaceTypeOptions.map((o) => (
-                    <option key={o.value} value={o.value}>{o.label}</option>
+                    <option key={o.value} value={o.value}>
+                      {o.label}
+                    </option>
                   ))}
                 </select>
               </div>
             )}
             <div>
               <label className="label">وضعیت</label>
-              <select className="input-field" value={form.status}
-                onChange={(e) => setForm((p) => ({ ...p, status: e.target.value as typeof form.status }))}>
+              <select
+                className="input-field"
+                value={form.status}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, status: e.target.value as typeof form.status }))
+                }
+              >
                 <option value="active">فعال</option>
                 <option value="maintenance">در تعمیر</option>
                 <option value="inactive">غیرفعال</option>
@@ -233,46 +271,71 @@ export function AdminSpacesPage() {
             </div>
             <div>
               <label className="label">ظرفیت (نفر)</label>
-              <input type="number" className="input-field" min="1" value={form.capacity}
-                onChange={(e) => setForm((p) => ({ ...p, capacity: e.target.value }))} />
+              <input
+                type="number"
+                className="input-field"
+                min="1"
+                value={form.capacity}
+                onChange={(e) => setForm((p) => ({ ...p, capacity: e.target.value }))}
+              />
             </div>
             <div>
               <label className="label">مکان</label>
-              <input className="input-field" value={form.location}
-                onChange={(e) => setForm((p) => ({ ...p, location: e.target.value }))} />
+              <input
+                className="input-field"
+                value={form.location}
+                onChange={(e) => setForm((p) => ({ ...p, location: e.target.value }))}
+              />
             </div>
             <div>
               <label className="label">ساختمان</label>
-              <input className="input-field" value={form.building}
-                onChange={(e) => setForm((p) => ({ ...p, building: e.target.value }))} />
+              <input
+                className="input-field"
+                value={form.building}
+                onChange={(e) => setForm((p) => ({ ...p, building: e.target.value }))}
+              />
             </div>
             <div>
               <label className="label">طبقه</label>
-              <input className="input-field" value={form.floor}
-                onChange={(e) => setForm((p) => ({ ...p, floor: e.target.value }))} />
+              <input
+                className="input-field"
+                value={form.floor}
+                onChange={(e) => setForm((p) => ({ ...p, floor: e.target.value }))}
+              />
             </div>
             <div className="sm:col-span-2">
               <label className="label">امکانات (با ، جدا کنید)</label>
-              <input className="input-field" placeholder="پروژکتور، WiFi، تهویه مطبوع"
+              <input
+                className="input-field"
+                placeholder="پروژکتور، WiFi، تهویه مطبوع"
                 value={form.amenities_raw}
-                onChange={(e) => setForm((p) => ({ ...p, amenities_raw: e.target.value }))} />
+                onChange={(e) => setForm((p) => ({ ...p, amenities_raw: e.target.value }))}
+              />
             </div>
             <div className="sm:col-span-2">
               <label className="label">توضیحات</label>
-              <textarea className="input-field min-h-20 resize-none" value={form.description}
-                onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} />
+              <textarea
+                className="input-field min-h-20 resize-none"
+                value={form.description}
+                onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
+              />
             </div>
             <div className="sm:col-span-2">
               <label className="label">قوانین استفاده</label>
-              <textarea className="input-field min-h-16 resize-none" value={form.rules}
-                onChange={(e) => setForm((p) => ({ ...p, rules: e.target.value }))} />
+              <textarea
+                className="input-field min-h-16 resize-none"
+                value={form.rules}
+                onChange={(e) => setForm((p) => ({ ...p, rules: e.target.value }))}
+              />
             </div>
           </div>
           <div className="flex gap-3 pt-2">
             <Button type="submit" loading={isLoading_} className="flex-1 justify-center">
               {editSpace ? 'ذخیره تغییرات' : 'افزودن فضا'}
             </Button>
-            <Button type="button" variant="secondary" onClick={closeModal}>انصراف</Button>
+            <Button type="button" variant="secondary" onClick={closeModal}>
+              انصراف
+            </Button>
           </div>
         </form>
       </Modal>
@@ -292,7 +355,9 @@ export function AdminSpacesPage() {
             >
               حذف
             </Button>
-            <Button variant="secondary" onClick={() => setDeleteId(null)}>انصراف</Button>
+            <Button variant="secondary" onClick={() => setDeleteId(null)}>
+              انصراف
+            </Button>
           </div>
         </div>
       </Modal>

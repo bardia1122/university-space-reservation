@@ -79,7 +79,10 @@ export function SuggestionsPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {topSuggestions.map((s, i) => (
-              <div key={s.id} className="p-4 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-500/10 dark:to-blue-500/10 rounded-xl border border-primary-100 dark:border-primary-500/30">
+              <div
+                key={s.id}
+                className="p-4 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-500/10 dark:to-blue-500/10 rounded-xl border border-primary-100 dark:border-primary-500/30"
+              >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-2xl font-black text-primary-200">#{i + 1}</span>
                   <div className="flex items-center gap-1 text-sm font-bold text-primary-700 dark:text-primary-300">
@@ -87,7 +90,9 @@ export function SuggestionsPage() {
                     {s.upvotes}
                   </div>
                 </div>
-                <p className="text-sm font-medium text-gray-800 dark:text-slate-100 line-clamp-2">{s.title}</p>
+                <p className="text-sm font-medium text-gray-800 dark:text-slate-100 line-clamp-2">
+                  {s.title}
+                </p>
               </div>
             ))}
           </div>
@@ -135,34 +140,59 @@ export function SuggestionsPage() {
                             {categoryLabels[s.category] ?? s.category}
                           </span>
                         )}
-                        <Badge variant={s.status as 'pending' | 'under_review' | 'approved' | 'rejected' | 'implemented'} label={statusLabels[s.status]} />
+                        <Badge
+                          variant={
+                            s.status as
+                              | 'pending'
+                              | 'under_review'
+                              | 'approved'
+                              | 'rejected'
+                              | 'implemented'
+                          }
+                          label={statusLabels[s.status]}
+                        />
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-600 dark:text-slate-300 mb-3 leading-relaxed">{s.description}</p>
+                    <p className="text-sm text-gray-600 dark:text-slate-300 mb-3 leading-relaxed">
+                      {s.description}
+                    </p>
 
                     {s.ai_summary && (
                       <div className="flex items-start gap-2 p-2.5 bg-purple-50 dark:bg-purple-500/10 rounded-lg border border-purple-100 mb-3">
                         <Sparkles size={14} className="text-purple-500 flex-shrink-0 mt-0.5" />
-                        <p className="text-xs text-purple-700 dark:text-purple-300">{s.ai_summary}</p>
+                        <p className="text-xs text-purple-700 dark:text-purple-300">
+                          {s.ai_summary}
+                        </p>
                       </div>
                     )}
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {s.user && (
-                          <span className="text-xs text-gray-400 dark:text-slate-500">{s.user.full_name}</span>
+                          <span className="text-xs text-gray-400 dark:text-slate-500">
+                            {s.user.full_name}
+                          </span>
                         )}
                         <span className="text-xs text-gray-300 dark:text-slate-600">•</span>
-                        <span className="text-xs text-gray-400 dark:text-slate-500">{s.created_at.slice(0, 10)}</span>
+                        <span className="text-xs text-gray-400 dark:text-slate-500">
+                          {s.created_at.slice(0, 10)}
+                        </span>
                       </div>
                       {s.ai_priority_score !== undefined && (
                         <div className="flex items-center gap-1">
-                          <span className="text-xs text-gray-400 dark:text-slate-500">اولویت هوش مصنوعی:</span>
-                          <span className={`text-xs font-bold ${
-                            s.ai_priority_score > 0.8 ? 'text-green-600 dark:text-green-400' :
-                            s.ai_priority_score > 0.6 ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-slate-400'
-                          }`}>
+                          <span className="text-xs text-gray-400 dark:text-slate-500">
+                            اولویت هوش مصنوعی:
+                          </span>
+                          <span
+                            className={`text-xs font-bold ${
+                              s.ai_priority_score > 0.8
+                                ? 'text-green-600 dark:text-green-400'
+                                : s.ai_priority_score > 0.6
+                                  ? 'text-amber-600 dark:text-amber-400'
+                                  : 'text-gray-500 dark:text-slate-400'
+                            }`}
+                          >
                             {Math.round(s.ai_priority_score * 100)}%
                           </span>
                         </div>
@@ -178,7 +208,13 @@ export function SuggestionsPage() {
 
       {/* Add Modal */}
       <Modal open={addModal} onClose={() => setAddModal(false)} title="ثبت پیشنهاد جدید">
-        <form onSubmit={(e) => { e.preventDefault(); addMutation.mutate(); }} className="space-y-4">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            addMutation.mutate();
+          }}
+          className="space-y-4"
+        >
           <div>
             <label className="label">عنوان پیشنهاد *</label>
             <input
@@ -197,7 +233,9 @@ export function SuggestionsPage() {
               onChange={(e) => setForm((p) => ({ ...p, category: e.target.value }))}
             >
               {categoryOptions.map((c) => (
-                <option key={c.value} value={c.value}>{c.label}</option>
+                <option key={c.value} value={c.value}>
+                  {c.label}
+                </option>
               ))}
             </select>
           </div>
@@ -212,11 +250,7 @@ export function SuggestionsPage() {
             />
           </div>
           <div className="flex gap-3">
-            <Button
-              type="submit"
-              loading={addMutation.isPending}
-              className="flex-1 justify-center"
-            >
+            <Button type="submit" loading={addMutation.isPending} className="flex-1 justify-center">
               ثبت پیشنهاد
             </Button>
             <Button type="button" variant="secondary" onClick={() => setAddModal(false)}>

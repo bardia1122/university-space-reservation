@@ -11,7 +11,12 @@ interface PublicSpaceCardProps {
   isAdmin?: boolean;
 }
 
-export function PublicSpaceCard({ space, onReserve, onInfo, isAdmin = false }: PublicSpaceCardProps) {
+export function PublicSpaceCard({
+  space,
+  onReserve,
+  onInfo,
+  isAdmin = false,
+}: PublicSpaceCardProps) {
   const TypeIcon = spaceTypeIcons[space.space_type];
   const PrimaryIcon = isAdmin ? Settings : CalendarPlus;
 
@@ -40,12 +45,16 @@ export function PublicSpaceCard({ space, onReserve, onInfo, isAdmin = false }: P
           <h3 className="font-semibold text-gray-900 dark:text-slate-100">{space.name}</h3>
           <div className="flex items-center gap-1 flex-shrink-0">
             <Star size={14} className="fill-amber-400 text-amber-400" />
-            <span className="text-sm font-medium text-gray-700 dark:text-slate-200">{space.avg_rating.toFixed(1)}</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
+              {space.avg_rating.toFixed(1)}
+            </span>
           </div>
         </div>
 
         {space.description && (
-          <p className="text-sm text-gray-500 mt-2 line-clamp-2 dark:text-slate-400">{space.description}</p>
+          <p className="text-sm text-gray-500 mt-2 line-clamp-2 dark:text-slate-400">
+            {space.description}
+          </p>
         )}
 
         <div className="space-y-1.5 mt-3 mb-4">

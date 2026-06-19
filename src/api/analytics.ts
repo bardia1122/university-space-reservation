@@ -33,7 +33,9 @@ export const analyticsApi = {
           space_id: space.id,
           space_name: space.name,
           total_reservations: reservations.length,
-          approved_count: reservations.filter((r) => r.status === 'approved' || r.status === 'completed').length,
+          approved_count: reservations.filter(
+            (r) => r.status === 'approved' || r.status === 'completed',
+          ).length,
           rejected_count: reservations.filter((r) => r.status === 'rejected').length,
           avg_rating: space.avg_rating,
         };
@@ -50,7 +52,11 @@ export const analyticsApi = {
       return reservations
         .filter((r) => {
           const d = new Date(r.reservation_date);
-          return d.getFullYear() === year && d.getMonth() + 1 === month && ['pending', 'approved'].includes(r.status);
+          return (
+            d.getFullYear() === year &&
+            d.getMonth() + 1 === month &&
+            ['pending', 'approved'].includes(r.status)
+          );
         })
         .map((r) => ({
           date: r.reservation_date,

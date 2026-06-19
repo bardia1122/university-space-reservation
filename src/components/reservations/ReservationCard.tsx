@@ -35,7 +35,9 @@ export function ReservationCard({
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="font-semibold text-gray-900 truncate dark:text-slate-100">{reservation.activity_title}</h3>
+            <h3 className="font-semibold text-gray-900 truncate dark:text-slate-100">
+              {reservation.activity_title}
+            </h3>
             <span className="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-0.5 dark:bg-slate-800 dark:text-slate-300">
               {activityLabels[reservation.activity_type]}
             </span>
@@ -44,7 +46,9 @@ export function ReservationCard({
             <p className="text-sm text-gray-500 dark:text-slate-400">{reservation.space.name}</p>
           )}
           {showUser && reservation.user && (
-            <p className="text-xs text-gray-400 mt-0.5 dark:text-slate-500">{reservation.user.full_name}</p>
+            <p className="text-xs text-gray-400 mt-0.5 dark:text-slate-500">
+              {reservation.user.full_name}
+            </p>
           )}
         </div>
         <Badge variant={reservation.status} />
@@ -82,13 +86,9 @@ export function ReservationCard({
         </div>
       )}
 
-      {(onCancel && canCancel) && (
+      {onCancel && canCancel && (
         <div className="flex justify-end">
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => onCancel(reservation.id)}
-          >
+          <Button variant="secondary" size="sm" onClick={() => onCancel(reservation.id)}>
             لغو رزرو
           </Button>
         </div>

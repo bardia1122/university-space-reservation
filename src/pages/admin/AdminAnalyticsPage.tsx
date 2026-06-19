@@ -1,8 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, RadarChart, Radar, PolarGrid,
-  PolarAngleAxis, PolarRadiusAxis,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
 } from 'recharts';
 import { analyticsApi } from '../../api/analytics';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
@@ -33,13 +42,18 @@ export function AdminAnalyticsPage() {
             <XAxis
               dataKey="space_name"
               tick={{ fontSize: 10 }}
-              tickFormatter={(v: string) => v.length > 12 ? v.slice(0, 12) + '…' : v}
+              tickFormatter={(v: string) => (v.length > 12 ? v.slice(0, 12) + '…' : v)}
               angle={-25}
               textAnchor="end"
             />
             <YAxis tick={{ fontSize: 11 }} />
             <Tooltip />
-            <Bar dataKey="total_reservations" name="کل رزروها" fill="#bfdbfe" radius={[4, 4, 0, 0]} />
+            <Bar
+              dataKey="total_reservations"
+              name="کل رزروها"
+              fill="#bfdbfe"
+              radius={[4, 4, 0, 0]}
+            />
             <Bar dataKey="approved_count" name="تأیید شده" fill="#2563eb" radius={[4, 4, 0, 0]} />
             <Bar dataKey="rejected_count" name="رد شده" fill="#fca5a5" radius={[4, 4, 0, 0]} />
           </BarChart>
@@ -55,7 +69,13 @@ export function AdminAnalyticsPage() {
               <PolarGrid />
               <PolarAngleAxis dataKey="space" tick={{ fontSize: 10 }} />
               <PolarRadiusAxis angle={30} domain={[0, 5]} tick={{ fontSize: 9 }} />
-              <Radar name="امتیاز" dataKey="امتیاز" stroke="#2563eb" fill="#2563eb" fillOpacity={0.2} />
+              <Radar
+                name="امتیاز"
+                dataKey="امتیاز"
+                stroke="#2563eb"
+                fill="#2563eb"
+                fillOpacity={0.2}
+              />
             </RadarChart>
           </ResponsiveContainer>
         </div>
@@ -79,12 +99,18 @@ export function AdminAnalyticsPage() {
                     <td className="py-2.5 font-medium text-gray-900 dark:text-slate-100 truncate max-w-[120px]">
                       {s.space_name}
                     </td>
-                    <td className="py-2.5 text-gray-600 dark:text-slate-300">{s.total_reservations}</td>
-                    <td className="py-2.5 text-green-600 dark:text-green-400">{s.approved_count}</td>
+                    <td className="py-2.5 text-gray-600 dark:text-slate-300">
+                      {s.total_reservations}
+                    </td>
+                    <td className="py-2.5 text-green-600 dark:text-green-400">
+                      {s.approved_count}
+                    </td>
                     <td className="py-2.5">
                       <div className="flex items-center gap-1">
                         <StarRating value={Math.round(s.avg_rating)} readonly size="sm" />
-                        <span className="text-xs text-gray-400 dark:text-slate-500">{s.avg_rating.toFixed(1)}</span>
+                        <span className="text-xs text-gray-400 dark:text-slate-500">
+                          {s.avg_rating.toFixed(1)}
+                        </span>
                       </div>
                     </td>
                   </tr>

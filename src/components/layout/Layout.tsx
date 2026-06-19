@@ -21,15 +21,11 @@ export function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
 
   const title =
-    pageTitles[pathname] ??
-    (pathname.startsWith('/spaces/') ? 'جزئیات فضا' : 'سامانه رزرو فضا');
+    pageTitles[pathname] ?? (pathname.startsWith('/spaces/') ? 'جزئیات فضا' : 'سامانه رزرو فضا');
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
-      <Sidebar
-        mobileOpen={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-      />
+      <Sidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
       <div className="lg:mr-64 flex flex-col min-h-screen">
         <Header title={title} onMenuClick={() => setMobileOpen(true)} />
         <main className="flex-1 p-4 lg:p-6 animate-fade-in">{children}</main>

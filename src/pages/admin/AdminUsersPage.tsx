@@ -1,12 +1,13 @@
 import { mockUsers } from '../../mock/data';
 import { Badge } from '../../components/common/Badge';
 
-const roleLabels: Record<string, { label: string; variant: 'blue' | 'purple' | 'red' | 'green' }> = {
-  student: { label: 'دانشجو', variant: 'blue' },
-  organization: { label: 'تشکل دانشجویی', variant: 'purple' },
-  admin: { label: 'مدیر', variant: 'red' },
-  super_admin: { label: 'سوپر ادمین', variant: 'red' },
-};
+const roleLabels: Record<string, { label: string; variant: 'blue' | 'purple' | 'red' | 'green' }> =
+  {
+    student: { label: 'دانشجو', variant: 'blue' },
+    organization: { label: 'تشکل دانشجویی', variant: 'purple' },
+    admin: { label: 'مدیر', variant: 'red' },
+    super_admin: { label: 'سوپر ادمین', variant: 'red' },
+  };
 
 export function AdminUsersPage() {
   return (
@@ -18,7 +19,9 @@ export function AdminUsersPage() {
               <th className="px-4 py-3 font-semibold text-right">نام</th>
               <th className="px-4 py-3 font-semibold text-right hidden md:table-cell">ایمیل</th>
               <th className="px-4 py-3 font-semibold text-right hidden sm:table-cell">دانشکده</th>
-              <th className="px-4 py-3 font-semibold text-right hidden lg:table-cell">شماره دانشجویی</th>
+              <th className="px-4 py-3 font-semibold text-right hidden lg:table-cell">
+                شماره دانشجویی
+              </th>
               <th className="px-4 py-3 font-semibold text-right">نقش</th>
               <th className="px-4 py-3 font-semibold text-right">وضعیت</th>
             </tr>
@@ -27,7 +30,10 @@ export function AdminUsersPage() {
             {mockUsers.map((user) => {
               const role = roleLabels[user.role];
               return (
-                <tr key={user.id} className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                <tr
+                  key={user.id}
+                  className="hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
+                >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className="w-7 h-7 rounded-full bg-primary-100 dark:bg-primary-500/15 flex items-center justify-center flex-shrink-0">
@@ -35,17 +41,28 @@ export function AdminUsersPage() {
                           {user.full_name[0]}
                         </span>
                       </div>
-                      <span className="font-medium text-gray-900 dark:text-slate-100">{user.full_name}</span>
+                      <span className="font-medium text-gray-900 dark:text-slate-100">
+                        {user.full_name}
+                      </span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">{user.email}</td>
-                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden sm:table-cell">{user.department ?? '—'}</td>
-                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden lg:table-cell">{user.student_id ?? '—'}</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden md:table-cell">
+                    {user.email}
+                  </td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden sm:table-cell">
+                    {user.department ?? '—'}
+                  </td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-slate-300 hidden lg:table-cell">
+                    {user.student_id ?? '—'}
+                  </td>
                   <td className="px-4 py-3">
                     <Badge variant={role?.variant ?? 'gray'} label={role?.label ?? user.role} />
                   </td>
                   <td className="px-4 py-3">
-                    <Badge variant={user.is_active ? 'approved' : 'rejected'} label={user.is_active ? 'فعال' : 'غیرفعال'} />
+                    <Badge
+                      variant={user.is_active ? 'approved' : 'rejected'}
+                      label={user.is_active ? 'فعال' : 'غیرفعال'}
+                    />
                   </td>
                 </tr>
               );

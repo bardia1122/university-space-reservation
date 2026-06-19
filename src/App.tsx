@@ -1,29 +1,62 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
 import { Layout } from './components/layout/Layout';
+import { LoadingSpinner } from './components/common/LoadingSpinner';
+
+// Pages are code-split so the initial bundle stays small; Suspense shows a
+// loading fallback while each route chunk is fetched on demand.
 
 // Public pages
-import { HomePage } from './pages/HomePage';
-import { NotFoundPage } from './pages/NotFoundPage';
+const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })));
+const NotFoundPage = lazy(() =>
+  import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+);
 
 // Auth pages
-import { LoginPage } from './pages/auth/LoginPage';
-import { RegisterPage } from './pages/auth/RegisterPage';
+const LoginPage = lazy(() =>
+  import('./pages/auth/LoginPage').then((m) => ({ default: m.LoginPage })),
+);
+const RegisterPage = lazy(() =>
+  import('./pages/auth/RegisterPage').then((m) => ({ default: m.RegisterPage })),
+);
 
 // Student pages
-import { DashboardPage } from './pages/student/DashboardPage';
-import { SpacesPage } from './pages/student/SpacesPage';
-import { SpaceDetailPage } from './pages/student/SpaceDetailPage';
-import { MyReservationsPage } from './pages/student/MyReservationsPage';
-import { SuggestionsPage } from './pages/student/SuggestionsPage';
+const DashboardPage = lazy(() =>
+  import('./pages/student/DashboardPage').then((m) => ({ default: m.DashboardPage })),
+);
+const SpacesPage = lazy(() =>
+  import('./pages/student/SpacesPage').then((m) => ({ default: m.SpacesPage })),
+);
+const SpaceDetailPage = lazy(() =>
+  import('./pages/student/SpaceDetailPage').then((m) => ({ default: m.SpaceDetailPage })),
+);
+const MyReservationsPage = lazy(() =>
+  import('./pages/student/MyReservationsPage').then((m) => ({ default: m.MyReservationsPage })),
+);
+const SuggestionsPage = lazy(() =>
+  import('./pages/student/SuggestionsPage').then((m) => ({ default: m.SuggestionsPage })),
+);
 
 // Admin pages
-import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
-import { AdminReservationsPage } from './pages/admin/AdminReservationsPage';
-import { AdminSpacesPage } from './pages/admin/AdminSpacesPage';
-import { AdminComplaintsPage } from './pages/admin/AdminComplaintsPage';
-import { AdminAnalyticsPage } from './pages/admin/AdminAnalyticsPage';
-import { AdminUsersPage } from './pages/admin/AdminUsersPage';
+const AdminDashboardPage = lazy(() =>
+  import('./pages/admin/AdminDashboardPage').then((m) => ({ default: m.AdminDashboardPage })),
+);
+const AdminReservationsPage = lazy(() =>
+  import('./pages/admin/AdminReservationsPage').then((m) => ({ default: m.AdminReservationsPage })),
+);
+const AdminSpacesPage = lazy(() =>
+  import('./pages/admin/AdminSpacesPage').then((m) => ({ default: m.AdminSpacesPage })),
+);
+const AdminComplaintsPage = lazy(() =>
+  import('./pages/admin/AdminComplaintsPage').then((m) => ({ default: m.AdminComplaintsPage })),
+);
+const AdminAnalyticsPage = lazy(() =>
+  import('./pages/admin/AdminAnalyticsPage').then((m) => ({ default: m.AdminAnalyticsPage })),
+);
+const AdminUsersPage = lazy(() =>
+  import('./pages/admin/AdminUsersPage').then((m) => ({ default: m.AdminUsersPage })),
+);
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuthStore();
@@ -51,31 +84,124 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <Routes>
-      {/* Public landing page */}
-      <Route path="/" element={<HomePage />} />
+    <Suspense fallback={<LoadingSpinner fullPage />}>
+      <Routes>
+        {/* Public landing page */}
+        <Route path="/" element={<HomePage />} />
 
-      {/* Public routes */}
-      <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
-      <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+        {/* Public routes */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
 
-      {/* Student routes */}
-      <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-      <Route path="/spaces" element={<ProtectedRoute><SpacesPage /></ProtectedRoute>} />
-      <Route path="/spaces/:id" element={<ProtectedRoute><SpaceDetailPage /></ProtectedRoute>} />
-      <Route path="/my-reservations" element={<ProtectedRoute><MyReservationsPage /></ProtectedRoute>} />
-      <Route path="/suggestions" element={<ProtectedRoute><SuggestionsPage /></ProtectedRoute>} />
+        {/* Student routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/spaces"
+          element={
+            <ProtectedRoute>
+              <SpacesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/spaces/:id"
+          element={
+            <ProtectedRoute>
+              <SpaceDetailPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-reservations"
+          element={
+            <ProtectedRoute>
+              <MyReservationsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/suggestions"
+          element={
+            <ProtectedRoute>
+              <SuggestionsPage />
+            </ProtectedRoute>
+          }
+        />
 
-      {/* Admin routes */}
-      <Route path="/admin" element={<AdminRoute><AdminDashboardPage /></AdminRoute>} />
-      <Route path="/admin/reservations" element={<AdminRoute><AdminReservationsPage /></AdminRoute>} />
-      <Route path="/admin/spaces" element={<AdminRoute><AdminSpacesPage /></AdminRoute>} />
-      <Route path="/admin/complaints" element={<AdminRoute><AdminComplaintsPage /></AdminRoute>} />
-      <Route path="/admin/analytics" element={<AdminRoute><AdminAnalyticsPage /></AdminRoute>} />
-      <Route path="/admin/users" element={<AdminRoute><AdminUsersPage /></AdminRoute>} />
+        {/* Admin routes */}
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminDashboardPage />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/reservations"
+          element={
+            <AdminRoute>
+              <AdminReservationsPage />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/spaces"
+          element={
+            <AdminRoute>
+              <AdminSpacesPage />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/complaints"
+          element={
+            <AdminRoute>
+              <AdminComplaintsPage />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/analytics"
+          element={
+            <AdminRoute>
+              <AdminAnalyticsPage />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <AdminRoute>
+              <AdminUsersPage />
+            </AdminRoute>
+          }
+        />
 
-      {/* 404 — unknown routes */}
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        {/* 404 — unknown routes */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 }

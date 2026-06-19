@@ -17,9 +17,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: storedUser ? (JSON.parse(storedUser) as User) : null,
   token: storedToken ?? null,
   isAuthenticated: !!storedToken && !!storedUser,
-  isAdmin: storedUser
-    ? ['admin', 'super_admin'].includes(JSON.parse(storedUser).role)
-    : false,
+  isAdmin: storedUser ? ['admin', 'super_admin'].includes(JSON.parse(storedUser).role) : false,
 
   setAuth: (user, token) => {
     localStorage.setItem('current_user', JSON.stringify(user));

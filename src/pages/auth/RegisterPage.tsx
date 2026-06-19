@@ -48,7 +48,9 @@ export function RegisterPage() {
       <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center p-4">
         <div className="card p-8 text-center max-w-sm w-full">
           <CheckCircle2 className="w-14 h-14 text-green-500 mx-auto mb-4" />
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-slate-100 mb-2">ثبت‌نام موفق</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-slate-100 mb-2">
+            ثبت‌نام موفق
+          </h2>
           <p className="text-gray-500 dark:text-slate-400 text-sm">در حال انتقال به صفحه ورود...</p>
         </div>
       </div>
@@ -60,7 +62,9 @@ export function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 flex flex-col items-center">
           <Logo size={64} variant="stacked" to="/" />
-          <p className="text-gray-500 dark:text-slate-400 mt-3 text-sm text-center">ایجاد حساب کاربری جدید</p>
+          <p className="text-gray-500 dark:text-slate-400 mt-3 text-sm text-center">
+            ایجاد حساب کاربری جدید
+          </p>
         </div>
 
         <div className="card p-8">
@@ -169,7 +173,10 @@ export function RegisterPage() {
 
           <p className="text-sm text-center text-gray-500 dark:text-slate-400 mt-5">
             قبلاً ثبت‌نام کرده‌اید؟{' '}
-            <Link to="/login" className="text-primary-600 dark:text-primary-400 font-medium hover:underline">
+            <Link
+              to="/login"
+              className="text-primary-600 dark:text-primary-400 font-medium hover:underline"
+            >
               وارد شوید
             </Link>
           </p>

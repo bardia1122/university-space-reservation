@@ -2,8 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
-  ArrowLeft, ShieldCheck, Clock, CalendarCheck, BarChart3,
-  MapPin, Users, Building2, Star, CalendarPlus, Layers, Settings,
+  ArrowLeft,
+  ShieldCheck,
+  Clock,
+  CalendarCheck,
+  BarChart3,
+  MapPin,
+  Users,
+  Building2,
+  Star,
+  CalendarPlus,
+  Layers,
+  Settings,
 } from 'lucide-react';
 import { spacesApi } from '../api/spaces';
 import { useAuthStore } from '../store/authStore';
@@ -13,9 +23,7 @@ import { Modal } from '../components/common/Modal';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { PublicSpaceCard } from '../components/spaces/PublicSpaceCard';
 import { ThemeToggle } from '../components/common/ThemeToggle';
-import {
-  spaceTypeLabels, spaceTypeIcons, spaceImage,
-} from '../lib/spaceVisuals';
+import { spaceTypeLabels, spaceTypeIcons, spaceImage } from '../lib/spaceVisuals';
 import type { Space, SpaceType } from '../types';
 
 const benefits = [
@@ -88,9 +96,27 @@ export function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Logo size={36} />
           <nav className="hidden md:flex items-center gap-7 text-sm text-gray-600 dark:text-slate-300">
-            <a href="#spaces" onClick={scrollToSection('spaces')} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">فضاها</a>
-            <a href="#benefits" onClick={scrollToSection('benefits')} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مزایا</a>
-            <a href="#how" onClick={scrollToSection('how')} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">راهنما</a>
+            <a
+              href="#spaces"
+              onClick={scrollToSection('spaces')}
+              className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              فضاها
+            </a>
+            <a
+              href="#benefits"
+              onClick={scrollToSection('benefits')}
+              className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              مزایا
+            </a>
+            <a
+              href="#how"
+              onClick={scrollToSection('how')}
+              className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              راهنما
+            </a>
           </nav>
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -142,8 +168,8 @@ export function HomePage() {
             تجربهٔ آسان و شفاف رزرو و مدیریت فضاهای دانشگاهی
           </h1>
           <p className="text-primary-100 mt-5 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            زمین‌های ورزشی، سالن‌های همایش، پلاتوهای فرهنگی و غرفه‌های نمایشگاهی را
-            به‌سادگی مشاهده و در چند گام رزرو کنید.
+            زمین‌های ورزشی، سالن‌های همایش، پلاتوهای فرهنگی و غرفه‌های نمایشگاهی را به‌سادگی مشاهده
+            و در چند گام رزرو کنید.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
             <a
@@ -169,8 +195,12 @@ export function HomePage() {
       {/* ---------- Spaces ---------- */}
       <section id="spaces" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 scroll-mt-20">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">فضاهای قابل رزرو</h2>
-          <p className="text-gray-500 mt-2 dark:text-slate-400">فضای مناسب رویداد خود را انتخاب کنید</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">
+            فضاهای قابل رزرو
+          </h2>
+          <p className="text-gray-500 mt-2 dark:text-slate-400">
+            فضای مناسب رویداد خود را انتخاب کنید
+          </p>
         </div>
 
         {/* type filter chips */}
@@ -223,20 +253,33 @@ export function HomePage() {
       </section>
 
       {/* ---------- Benefits ---------- */}
-      <section id="benefits" className="bg-gray-50 border-y border-gray-100 scroll-mt-20 dark:bg-slate-900 dark:border-slate-800">
+      <section
+        id="benefits"
+        className="bg-gray-50 border-y border-gray-100 scroll-mt-20 dark:bg-slate-900 dark:border-slate-800"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">چرا این سامانه؟</h2>
-            <p className="text-gray-500 mt-2 dark:text-slate-400">مزایای استفاده از سامانهٔ رزرو فضاها</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">
+              چرا این سامانه؟
+            </h2>
+            <p className="text-gray-500 mt-2 dark:text-slate-400">
+              مزایای استفاده از سامانهٔ رزرو فضاها
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {benefits.map((b) => (
               <div key={b.title} className="card p-6 text-center">
-                <div className={`w-12 h-12 rounded-xl ${b.color} flex items-center justify-center mx-auto mb-4`}>
+                <div
+                  className={`w-12 h-12 rounded-xl ${b.color} flex items-center justify-center mx-auto mb-4`}
+                >
                   <b.icon size={24} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1.5 dark:text-slate-100">{b.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed dark:text-slate-400">{b.desc}</p>
+                <h3 className="font-semibold text-gray-900 mb-1.5 dark:text-slate-100">
+                  {b.title}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed dark:text-slate-400">
+                  {b.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -246,13 +289,27 @@ export function HomePage() {
       {/* ---------- How it works ---------- */}
       <section id="how" className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 scroll-mt-20">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">رزرو در سه گام</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-slate-100">
+            رزرو در سه گام
+          </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
-            { n: '۱', t: 'فضا را انتخاب کنید', d: 'از میان فضاهای موجود، گزینهٔ مناسب رویداد خود را بیابید.' },
-            { n: '۲', t: 'درخواست رزرو ثبت کنید', d: 'تاریخ، ساعت و جزئیات فعالیت را وارد و درخواست را ارسال کنید.' },
-            { n: '۳', t: 'تأیید را دریافت کنید', d: 'پس از بررسی مدیر، نتیجهٔ درخواست به شما اطلاع داده می‌شود.' },
+            {
+              n: '۱',
+              t: 'فضا را انتخاب کنید',
+              d: 'از میان فضاهای موجود، گزینهٔ مناسب رویداد خود را بیابید.',
+            },
+            {
+              n: '۲',
+              t: 'درخواست رزرو ثبت کنید',
+              d: 'تاریخ، ساعت و جزئیات فعالیت را وارد و درخواست را ارسال کنید.',
+            },
+            {
+              n: '۳',
+              t: 'تأیید را دریافت کنید',
+              d: 'پس از بررسی مدیر، نتیجهٔ درخواست به شما اطلاع داده می‌شود.',
+            },
           ].map((step) => (
             <div key={step.n} className="relative card p-6">
               <div className="w-10 h-10 rounded-full bg-primary-600 text-white font-bold flex items-center justify-center mb-4">
@@ -268,8 +325,12 @@ export function HomePage() {
       {/* ---------- CTA ---------- */}
       <section className="bg-gradient-to-l from-primary-700 to-primary-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">آمادهٔ رزرو فضای بعدی خود هستید؟</h2>
-          <p className="text-primary-100 mt-3">همین حالا وارد شوید و رویداد خود را برنامه‌ریزی کنید.</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white">
+            آمادهٔ رزرو فضای بعدی خود هستید؟
+          </h2>
+          <p className="text-primary-100 mt-3">
+            همین حالا وارد شوید و رویداد خود را برنامه‌ریزی کنید.
+          </p>
           <button
             onClick={() => (isAuthenticated ? goToPanel() : navigate('/login'))}
             className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-primary-700 font-semibold hover:bg-primary-50 transition-colors"
@@ -284,7 +345,9 @@ export function HomePage() {
       <footer className="border-t border-gray-100 bg-white dark:border-slate-800 dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Logo size={32} />
-          <p className="text-sm text-gray-400 dark:text-slate-500">© ۱۴۰۵ سامانهٔ فضاهای دانشگاه — تمامی حقوق محفوظ است.</p>
+          <p className="text-sm text-gray-400 dark:text-slate-500">
+            © ۱۴۰۵ سامانهٔ فضاهای دانشگاه — تمامی حقوق محفوظ است.
+          </p>
         </div>
       </footer>
 
@@ -318,13 +381,19 @@ export function HomePage() {
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Star size={16} className="fill-amber-400 text-amber-400" />
-                <span className="font-bold text-gray-900 dark:text-slate-100">{infoSpace.avg_rating.toFixed(1)}</span>
-                <span className="text-sm text-gray-400 dark:text-slate-500">({infoSpace.total_ratings} امتیاز)</span>
+                <span className="font-bold text-gray-900 dark:text-slate-100">
+                  {infoSpace.avg_rating.toFixed(1)}
+                </span>
+                <span className="text-sm text-gray-400 dark:text-slate-500">
+                  ({infoSpace.total_ratings} امتیاز)
+                </span>
               </span>
             </div>
 
             {infoSpace.description && (
-              <p className="text-sm text-gray-600 leading-relaxed dark:text-slate-300">{infoSpace.description}</p>
+              <p className="text-sm text-gray-600 leading-relaxed dark:text-slate-300">
+                {infoSpace.description}
+              </p>
             )}
 
             <div className="grid grid-cols-2 gap-3">
@@ -356,7 +425,9 @@ export function HomePage() {
 
             {infoSpace.amenities && infoSpace.amenities.length > 0 && (
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2 dark:text-slate-200">امکانات:</p>
+                <p className="text-sm font-medium text-gray-700 mb-2 dark:text-slate-200">
+                  امکانات:
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {infoSpace.amenities.map((a) => (
                     <span
@@ -372,8 +443,12 @@ export function HomePage() {
 
             {infoSpace.rules && (
               <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl dark:bg-amber-500/10 dark:border-amber-500/25">
-                <p className="text-xs font-semibold text-amber-700 mb-1 dark:text-amber-300">قوانین استفاده:</p>
-                <p className="text-xs text-amber-700 leading-relaxed dark:text-amber-200/90">{infoSpace.rules}</p>
+                <p className="text-xs font-semibold text-amber-700 mb-1 dark:text-amber-300">
+                  قوانین استفاده:
+                </p>
+                <p className="text-xs text-amber-700 leading-relaxed dark:text-amber-200/90">
+                  {infoSpace.rules}
+                </p>
               </div>
             )}
 
@@ -390,10 +465,7 @@ export function HomePage() {
                 {isAdmin ? <Settings size={16} /> : <CalendarPlus size={16} />}
                 {isAdmin ? 'مدیریت این فضا' : 'رزرو این فضا'}
               </button>
-              <button
-                onClick={() => setInfoSpace(null)}
-                className="btn-secondary"
-              >
+              <button onClick={() => setInfoSpace(null)} className="btn-secondary">
                 بستن
               </button>
             </div>

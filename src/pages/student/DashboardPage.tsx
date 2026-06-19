@@ -1,5 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import { Calendar, CheckCircle, Clock, XCircle, Plus, ArrowLeft, Megaphone, Lightbulb, Building2 } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle,
+  Clock,
+  XCircle,
+  Plus,
+  ArrowLeft,
+  Megaphone,
+  Lightbulb,
+  Building2,
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { reservationsApi } from '../../api/reservations';
 import { useAuthStore } from '../../store/authStore';
@@ -54,12 +64,14 @@ export function DashboardPage() {
     <div className="space-y-6">
       {/* Welcome */}
       <div className="card p-6 bg-gradient-to-l from-primary-600 to-primary-800 text-white">
-        <h2 className="text-xl font-bold mb-1">
-          سلام، {user?.full_name}
-        </h2>
+        <h2 className="text-xl font-bold mb-1">سلام، {user?.full_name}</h2>
         <p className="text-primary-100 text-sm">
           {user?.department ? `${user.department} — ` : ''}
-          {user?.student_id ? `شماره دانشجویی: ${user.student_id}` : user?.role === 'organization' ? 'تشکل دانشجویی' : ''}
+          {user?.student_id
+            ? `شماره دانشجویی: ${user.student_id}`
+            : user?.role === 'organization'
+              ? 'تشکل دانشجویی'
+              : ''}
         </p>
         <button
           onClick={() => navigate('/spaces')}
@@ -74,7 +86,9 @@ export function DashboardPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
           <div key={stat.label} className="stat-card">
-            <div className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center mb-3`}>
+            <div
+              className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center mb-3`}
+            >
               <stat.icon size={20} className={stat.color} />
             </div>
             <p className="text-2xl font-bold text-gray-900 dark:text-slate-100">{stat.value}</p>
@@ -112,7 +126,9 @@ export function DashboardPage() {
                 className="flex items-center justify-between px-5 py-3.5 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 dark:text-slate-100 truncate">{r.activity_title}</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-slate-100 truncate">
+                    {r.activity_title}
+                  </p>
                   <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
                     {r.space?.name} — {r.reservation_date}
                   </p>
