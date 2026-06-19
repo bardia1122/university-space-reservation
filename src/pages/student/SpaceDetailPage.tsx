@@ -26,7 +26,7 @@ import { Modal } from '../../components/common/Modal';
 import { StarRating } from '../../components/common/StarRating';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { ClockTimePicker } from '../../components/common/ClockTimePicker';
-import type { ActivityType, RatingCreate } from '../../types';
+import type { ActivityType, RatingCreate, Space } from '../../types';
 
 const activityOptions: { value: ActivityType; label: string }[] = [
   { value: 'sports', label: 'ورزشی' },
@@ -37,6 +37,54 @@ const activityOptions: { value: ActivityType; label: string }[] = [
   { value: 'festival', label: 'جشنواره' },
   { value: 'other', label: 'سایر' },
 ];
+
+interface ReserveFields {
+  reservation_date: string;
+  start_time: string;
+  end_time: string;
+  expected_attendees: string;
+}
+
+/**
+ * Client-side guardrails mirroring the backend reservation rules (see API_DOCUMENTATION.md
+ * §5): end after start, honor `min_advance_hours` / `advance_booking_days`, and keep the
+ * attendee count within capacity. Returns the first problem found, or `null` when valid.
+ * Returns `null` while required fields are still empty so errors only appear once relevant.
+ */
+function getReserveError(form: ReserveFields, space: Space): string | null {
+  const { reservation_date, start_time, end_time, expected_attendees } = form;
+
+  if (expected_attendees && space.capacity && Number(expected_attendees) > space.capacity) {
+    return `ظرفیت این فضا ${space.capacity} نفر است`;
+  }
+
+  if (!reservation_date || !start_time || !end_time) return null;
+
+  if (end_time <= start_time) {
+    return 'ساعت پایان باید بعد از ساعت شروع باشد';
+  }
+
+  const start = new Date(`${reservation_date}T${start_time}:00`);
+  const now = new Date();
+
+  if (space.min_advance_hours > 0) {
+    const earliest = new Date(now.getTime() + space.min_advance_hours * 3_600_000);
+    if (start < earliest) return `رزرو باید حداقل ${space.min_advance_hours} ساعت زودتر ثبت شود`;
+  } else if (start < now) {
+    return 'زمان انتخابی در گذشته است';
+  }
+
+  if (space.advance_booking_days > 0) {
+    const latest = new Date();
+    latest.setHours(0, 0, 0, 0);
+    latest.setDate(latest.getDate() + space.advance_booking_days);
+    if (new Date(`${reservation_date}T00:00:00`) > latest) {
+      return `رزرو تنها تا ${space.advance_booking_days} روز آینده امکان‌پذیر است`;
+    }
+  }
+
+  return null;
+}
 
 export function SpaceDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -137,6 +185,10 @@ export function SpaceDetailPage() {
   if (isLoading) return <LoadingSpinner fullPage />;
   if (!space)
     return <div className="text-center py-20 text-gray-400 dark:text-slate-500">فضا یافت نشد</div>;
+
+  const reserveError = getReserveError(reserveForm, space);
+  const reserveComplete =
+    !!reserveForm.reservation_date && !!reserveForm.start_time && !!reserveForm.end_time;
 
   return (
     <div className="max-w-4xl space-y-5">
@@ -368,6 +420,7 @@ export function SpaceDetailPage() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            if (reserveError || !reserveComplete) return;
             reserveMutation.mutate();
           }}
           className="space-y-4"
@@ -467,10 +520,17 @@ export function SpaceDetailPage() {
               />
             </div>
           </div>
+          {reserveError && (
+            <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300">
+              <AlertTriangle size={16} className="flex-shrink-0" />
+              {reserveError}
+            </div>
+          )}
           <div className="flex gap-3 pt-2">
             <Button
               type="submit"
               loading={reserveMutation.isPending}
+              disabled={!!reserveError || !reserveComplete}
               className="flex-1 justify-center"
             >
               ثبت درخواست رزرو
